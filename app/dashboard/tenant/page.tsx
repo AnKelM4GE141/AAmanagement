@@ -1,8 +1,26 @@
 import { requireRole } from '@/lib/auth/helpers'
+import { createClient } from '@/lib/supabase/server'
 import Card, { CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 
 export default async function TenantDashboard() {
   const profile = await requireRole(['tenant'])
+
+  const supabase = await createClient()
+
+  // Fetch tenant assignment and property details
+  const { data: tenantData } = await supabase
+    .from('tenants')
+    .select(`
+      *,
+      property:properties(
+        name,
+        address,
+        description
+      )
+    `)
+    .eq('user_id', profile.id)
+    .eq('status', 'active')
+    .single()
 
   return (
     <div className="space-y-6">
@@ -63,27 +81,65 @@ export default async function TenantDashboard() {
             <CardTitle>Lease Information</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between">
-                <span className="text-gray-600">Unit:</span>
-                <span className="font-medium">Not assigned</span>
+            {!tenantData ? (
+              <div className="text-center py-4">
+                <p className="text-sm text-gray-600">Not assigned to a property yet</p>
+                <p className="text-xs text-gray-500 mt-1">
+                  Contact your property manager for assistance
+                </p>
               </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Lease Start:</span>
-                <span className="font-medium">-</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Lease End:</span>
-                <span className="font-medium">-</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-600">Monthly Rent:</span>
-                <span className="font-medium">-</span>
-              </div>
-            </div>
-            <p className="text-xs text-gray-500 mt-4">
-              Lease management coming in Phase 2
-            </p>
+            ) : (
+              <>
+                {tenantData.property && (
+                  <div className="mb-4 pb-4 border-b border-gray-200">
+                    <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                      {tenantData.property.name || 'Your Property'}
+                    </h4>
+                    <p className="text-sm text-gray-600">{tenantData.property.address}</p>
+                  </div>
+                )}
+                <div className="space-y-2 text-sm">
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Unit:</span>
+                    <span className="font-medium">
+                      {tenantData.unit_number || 'Not specified'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Lease Start:</span>
+                    <span className="font-medium">
+                      {tenantData.lease_start
+                        ? new Date(tenantData.lease_start).toLocaleDateString()
+                        : '-'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Lease End:</span>
+                    <span className="font-medium">
+                      {tenantData.lease_end
+                        ? new Date(tenantData.lease_end).toLocaleDateString()
+                        : '-'}
+                    </span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-gray-600">Monthly Rent:</span>
+                    <span className="font-medium text-lg">
+                      {tenantData.rent_amount
+                        ? `$${tenantData.rent_amount.toLocaleString()}`
+                        : '-'}
+                    </span>
+                  </div>
+                  {tenantData.security_deposit && (
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Security Deposit:</span>
+                      <span className="font-medium">
+                        ${tenantData.security_deposit.toLocaleString()}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </>
+            )}
           </CardContent>
         </Card>
 

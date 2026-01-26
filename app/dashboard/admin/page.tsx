@@ -72,10 +72,24 @@ export default async function AdminDashboard() {
               </Link>
             </div>
 
+            <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+              <div>
+                <h3 className="font-medium text-gray-900">Properties</h3>
+                <p className="text-sm text-gray-600">
+                  Add and manage your rental properties
+                </p>
+              </div>
+              <Link
+                href="/dashboard/admin/properties"
+                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Manage Properties
+              </Link>
+            </div>
+
             <div className="p-4 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm text-blue-800">
-                <strong>Getting Started:</strong> Use the user management section to
-                invite tenants and manage access to the portal.
+                <strong>Getting Started:</strong> Add your properties first, then invite tenants and assign them to units.
               </p>
             </div>
           </div>
@@ -95,11 +109,11 @@ export default async function AdminDashboard() {
               <p className="text-xs text-gray-500 mt-2">Coming in Phase 2</p>
             </button>
 
-            <button className="p-4 text-left border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
+            <Link href="/dashboard/admin/properties" className="p-4 text-left border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors block">
               <h3 className="font-medium text-gray-900">Properties</h3>
-              <p className="text-sm text-gray-600 mt-1">Manage your properties</p>
-              <p className="text-xs text-gray-500 mt-2">Coming in Phase 2</p>
-            </button>
+              <p className="text-sm text-gray-600 mt-1">Manage your rental properties</p>
+              <p className="text-xs text-blue-600 mt-2 font-medium">Available Now →</p>
+            </Link>
 
             <button className="p-4 text-left border border-gray-200 rounded-lg hover:border-blue-500 hover:bg-blue-50 transition-colors">
               <h3 className="font-medium text-gray-900">Payments</h3>

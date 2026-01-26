@@ -2,6 +2,7 @@ import { requireRole } from '@/lib/auth/helpers'
 import { createClient } from '@/lib/supabase/server'
 import Card, { CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import InviteUserForm from '@/components/admin/InviteUserForm'
+import UserRoleSelect from '@/components/admin/UserRoleSelect'
 
 export const dynamic = 'force-dynamic'
 
@@ -9,6 +10,10 @@ export default async function UsersPage() {
   await requireRole(['admin'])
 
   const supabase = await createClient()
+
+  // Get current user ID
+  const { data: { user: currentUser } } = await supabase.auth.getUser()
+  const currentUserId = currentUser?.id
 
   // Fetch all users
   const { data: users, error: usersError } = await supabase
@@ -76,24 +81,19 @@ export default async function UsersPage() {
                           <h3 className="font-medium text-gray-900">
                             {user.full_name}
                           </h3>
-                          {user.is_owner && (
-                            <span className="px-2 py-0.5 text-xs bg-yellow-100 text-yellow-800 rounded-full">
-                              Owner
-                            </span>
-                          )}
                         </div>
                         <p className="text-sm text-gray-600">{user.email}</p>
                         {user.phone && (
                           <p className="text-sm text-gray-600">{user.phone}</p>
                         )}
                       </div>
-                      <span
-                        className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                          roleColors[user.role as keyof typeof roleColors]
-                        }`}
-                      >
-                        {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
-                      </span>
+                      <UserRoleSelect
+                        userId={user.id}
+                        currentRole={user.role as 'admin' | 'tenant' | 'applicant'}
+                        userName={user.full_name}
+                        isOwner={user.is_owner}
+                        currentUserId={currentUserId}
+                      />
                     </div>
                   ))}
                 </div>

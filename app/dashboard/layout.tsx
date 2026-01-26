@@ -1,4 +1,4 @@
-import { getUserProfile } from '@/lib/auth/helpers'
+import { getUserProfile, getDashboardPath } from '@/lib/auth/helpers'
 import { redirect } from 'next/navigation'
 import SignOutButton from '@/components/auth/SignOutButton'
 import Link from 'next/link'
@@ -20,6 +20,8 @@ export default async function DashboardLayout({
     applicant: 'bg-green-100 text-green-800',
   }
 
+  const dashboardHome = getDashboardPath(profile.role)
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
@@ -27,7 +29,7 @@ export default async function DashboardLayout({
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <Link href="/" className="text-xl font-bold text-gray-900">
+              <Link href={dashboardHome} className="text-xl font-bold text-gray-900 hover:text-gray-700 transition-colors">
                 AA Portal
               </Link>
               <span
