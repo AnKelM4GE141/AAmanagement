@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^5.5.0",
+    "@stripe/stripe-js": "^8.6.4",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.47.10",
     "next": "^15.1.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "stripe": "^20.2.0"
   },
   "devDependencies": {
     "@types/node": "^22",
