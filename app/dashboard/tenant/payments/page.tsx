@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Card, { CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import PaymentForm from '@/components/tenant/payments/PaymentForm'
 import PaymentHistory from '@/components/tenant/payments/PaymentHistory'
+import SavedPaymentMethods from '@/components/tenant/payments/SavedPaymentMethods'
 import Button from '@/components/ui/Button'
 import Alert from '@/components/ui/Alert'
 import type { Payment } from '@/lib/types/payment'
@@ -290,6 +291,16 @@ export default function TenantPaymentsPage() {
               </p>
             </div>
           )}
+        </CardContent>
+      </Card>
+
+      {/* Saved Payment Methods */}
+      <Card>
+        <CardHeader>
+          <CardTitle>Saved Payment Methods</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <SavedPaymentMethods />
         </CardContent>
       </Card>
 
