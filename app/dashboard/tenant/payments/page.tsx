@@ -6,6 +6,7 @@ import Card, { CardHeader, CardTitle, CardContent } from '@/components/ui/Card'
 import PaymentForm from '@/components/tenant/payments/PaymentForm'
 import PaymentHistory from '@/components/tenant/payments/PaymentHistory'
 import SavedPaymentMethods from '@/components/tenant/payments/SavedPaymentMethods'
+import AutopayEnrollment from '@/components/tenant/payments/AutopayEnrollment'
 import Button from '@/components/ui/Button'
 import Alert from '@/components/ui/Alert'
 import type { Payment } from '@/lib/types/payment'
@@ -252,45 +253,10 @@ export default function TenantPaymentsPage() {
           <CardTitle>Autopay</CardTitle>
         </CardHeader>
         <CardContent>
-          {isEnrolledInAutopay ? (
-            <div className="bg-purple-50 border border-purple-200 rounded-lg p-6">
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="font-semibold text-purple-900 mb-2">
-                    Autopay is Active
-                  </h3>
-                  <p className="text-sm text-purple-700 mb-4">
-                    You're saving ${autopayDiscount.toFixed(2)}/month with automatic
-                    payments on the 1st of each month.
-                  </p>
-                  <p className="text-xs text-purple-600">
-                    Your rent is automatically charged to your saved payment method
-                  </p>
-                </div>
-                <div className="text-right">
-                  <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                    Active
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <h3 className="font-semibold text-blue-900 mb-2">
-                Enroll in Autopay & Save
-              </h3>
-              <p className="text-sm text-blue-700 mb-4">
-                Save ${autopayDiscount || 25}/month by enrolling in automatic
-                payments. Never miss a due date!
-              </p>
-              <Button disabled className="cursor-not-allowed">
-                Coming Soon - Enroll in Autopay
-              </Button>
-              <p className="text-xs text-blue-600 mt-2">
-                Phase 3D: Autopay enrollment system
-              </p>
-            </div>
-          )}
+          <AutopayEnrollment
+            discountAmount={autopayDiscount || 25}
+            onEnrollmentChange={() => fetchData()}
+          />
         </CardContent>
       </Card>
 
