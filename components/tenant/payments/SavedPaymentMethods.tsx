@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react'
 import Button from '@/components/ui/Button'
 import Alert from '@/components/ui/Alert'
-import type { PaymentMethod } from '@/lib/types/payment'
+import AddPaymentMethodForm from './AddPaymentMethodForm'
+import type { SavedPaymentMethod } from '@/lib/types/payment'
 
 interface SavedPaymentMethodsProps {
   onSelectForAutopay?: (paymentMethodId: string) => void
@@ -12,11 +13,12 @@ interface SavedPaymentMethodsProps {
 export default function SavedPaymentMethods({
   onSelectForAutopay,
 }: SavedPaymentMethodsProps) {
-  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([])
+  const [paymentMethods, setPaymentMethods] = useState<SavedPaymentMethod[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState('')
   const [deletingId, setDeletingId] = useState<string | null>(null)
   const [settingDefaultId, setSettingDefaultId] = useState<string | null>(null)
+  const [showAddForm, setShowAddForm] = useState(false)
 
   useEffect(() => {
     fetchPaymentMethods()
@@ -102,6 +104,15 @@ export default function SavedPaymentMethods({
     }
   }
 
+  function handleAddSuccess() {
+    setShowAddForm(false)
+    fetchPaymentMethods() // Refresh the list
+  }
+
+  function handleAddCancel() {
+    setShowAddForm(false)
+  }
+
   function getPaymentMethodIcon(type: string) {
     if (type === 'ach') {
       return (
@@ -138,7 +149,7 @@ export default function SavedPaymentMethods({
     }
   }
 
-  function getPaymentMethodLabel(pm: PaymentMethod) {
+  function getPaymentMethodLabel(pm: SavedPaymentMethod) {
     if (pm.type === 'ach') {
       return (
         <div>
@@ -176,27 +187,42 @@ export default function SavedPaymentMethods({
     <div className="space-y-4">
       {error && <Alert variant="error">{error}</Alert>}
 
-      {paymentMethods.length === 0 ? (
-        <div className="text-center py-8">
-          <svg
-            className="mx-auto h-12 w-12 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
-            />
-          </svg>
-          <p className="mt-2 text-sm text-gray-600">No saved payment methods</p>
-          <p className="text-xs text-gray-500 mt-1">
-            Add a payment method when making your next payment
-          </p>
-        </div>
+      {showAddForm ? (
+        <AddPaymentMethodForm
+          onSuccess={handleAddSuccess}
+          onCancel={handleAddCancel}
+        />
       ) : (
+        <>
+          {!isLoading && (
+            <div className="flex justify-end">
+              <Button onClick={() => setShowAddForm(true)}>
+                + Add Payment Method
+              </Button>
+            </div>
+          )}
+
+          {paymentMethods.length === 0 ? (
+            <div className="text-center py-8">
+              <svg
+                className="mx-auto h-12 w-12 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                />
+              </svg>
+              <p className="mt-2 text-sm text-gray-600">No saved payment methods</p>
+              <p className="text-xs text-gray-500 mt-1">
+                Click "Add Payment Method" above to get started
+              </p>
+            </div>
+          ) : (
         <div className="space-y-3">
           {paymentMethods.map((pm) => (
             <div
@@ -269,6 +295,8 @@ export default function SavedPaymentMethods({
           <li>• Required for autopay enrollment</li>
         </ul>
       </div>
+        </>
+      )}
     </div>
   )
 }

@@ -99,23 +99,21 @@ async function handlePaymentIntentSucceeded(
     return
   }
 
-  // Calculate Stripe fee from charges
+  // Calculate Stripe fee from latest charge
   let stripeFee = 0
-  if (paymentIntent.charges.data.length > 0) {
-    const charge = paymentIntent.charges.data[0]
-    if (charge.balance_transaction) {
-      // Fee is in cents, convert to dollars
+  let chargeId: string | null = null
+
+  if (paymentIntent.latest_charge) {
+    chargeId = typeof paymentIntent.latest_charge === 'string'
+      ? paymentIntent.latest_charge
+      : paymentIntent.latest_charge.id
+
+    if (typeof paymentIntent.latest_charge !== 'string' && paymentIntent.latest_charge.balance_transaction) {
       stripeFee = centsToDollars(
-        (charge.balance_transaction as Stripe.BalanceTransaction).fee || 0
+        (paymentIntent.latest_charge.balance_transaction as Stripe.BalanceTransaction).fee || 0
       )
     }
   }
-
-  // Get charge ID
-  const chargeId =
-    paymentIntent.charges.data.length > 0
-      ? paymentIntent.charges.data[0].id
-      : null
 
   // Update payment status to completed
   const { error: updateError } = await supabase

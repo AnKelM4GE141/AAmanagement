@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Button from '@/components/ui/Button'
 import Alert from '@/components/ui/Alert'
-import type { PaymentMethod } from '@/lib/types/payment'
+import type { SavedPaymentMethod } from '@/lib/types/payment'
 
 interface AutopayEnrollmentProps {
   discountAmount?: number
@@ -16,7 +16,7 @@ export default function AutopayEnrollment({
 }: AutopayEnrollmentProps) {
   const [isEnrolled, setIsEnrolled] = useState(false)
   const [enrollment, setEnrollment] = useState<any>(null)
-  const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([])
+  const [paymentMethods, setPaymentMethods] = useState<SavedPaymentMethod[]>([])
   const [selectedPaymentMethodId, setSelectedPaymentMethodId] = useState('')
   const [isLoading, setIsLoading] = useState(true)
   const [isProcessing, setIsProcessing] = useState(false)
@@ -60,7 +60,7 @@ export default function AutopayEnrollment({
         // Auto-select default payment method if available and not already selected
         if (!selectedPaymentMethodId && data.payment_methods?.length > 0) {
           const defaultMethod = data.payment_methods.find(
-            (pm: PaymentMethod) => pm.is_default
+            (pm: SavedPaymentMethod) => pm.is_default
           )
           if (defaultMethod) {
             setSelectedPaymentMethodId(defaultMethod.id)
@@ -157,7 +157,7 @@ export default function AutopayEnrollment({
     }
   }
 
-  function getPaymentMethodLabel(pm: PaymentMethod) {
+  function getPaymentMethodLabel(pm: SavedPaymentMethod) {
     if (pm.type === 'ach') {
       return `${pm.bank_name || 'Bank Account'} ····${pm.last4}`
     } else {
