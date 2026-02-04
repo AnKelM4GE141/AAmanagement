@@ -10,7 +10,7 @@ import OpportunityCard from './OpportunityCard'
 interface Opportunity {
   id: string
   contact_id: string
-  stage: string
+  stage_id: string
   property_id: string | null
   expected_move_in: string | null
   value: number | null

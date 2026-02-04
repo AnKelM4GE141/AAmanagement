@@ -3,9 +3,10 @@ import { NextResponse } from 'next/server'
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string; stageId: string } }
+  { params }: { params: Promise<{ id: string; stageId: string }> }
 ) {
   try {
+    const { id, stageId } = await params
     const supabase = await createClient()
 
     // Get current user
@@ -36,8 +37,8 @@ export async function PATCH(
     const { data: stage, error: updateError } = await supabase
       .from('pipeline_stages')
       .update({ name, color })
-      .eq('id', params.stageId)
-      .eq('pipeline_id', params.id)
+      .eq('id', stageId)
+      .eq('pipeline_id', id)
       .select()
       .single()
 
@@ -57,9 +58,10 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string; stageId: string } }
+  { params }: { params: Promise<{ id: string; stageId: string }> }
 ) {
   try {
+    const { id, stageId } = await params
     const supabase = await createClient()
 
     // Get current user
@@ -87,25 +89,25 @@ export async function DELETE(
     const { data: firstStage } = await supabase
       .from('pipeline_stages')
       .select('id')
-      .eq('pipeline_id', params.id)
+      .eq('pipeline_id', id)
       .order('position', { ascending: true })
       .limit(1)
       .single()
 
     // Move opportunities to first stage before deleting
-    if (firstStage && firstStage.id !== params.stageId) {
+    if (firstStage && firstStage.id !== stageId) {
       await supabase
         .from('opportunities')
         .update({ stage_id: firstStage.id })
-        .eq('stage_id', params.stageId)
+        .eq('stage_id', stageId)
     }
 
     // Delete stage
     const { error: deleteError } = await supabase
       .from('pipeline_stages')
       .delete()
-      .eq('id', params.stageId)
-      .eq('pipeline_id', params.id)
+      .eq('id', stageId)
+      .eq('pipeline_id', id)
 
     if (deleteError) {
       throw deleteError

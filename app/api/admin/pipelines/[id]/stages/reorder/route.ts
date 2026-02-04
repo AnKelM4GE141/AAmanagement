@@ -3,9 +3,10 @@ import { NextResponse } from 'next/server'
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const supabase = await createClient()
 
     // Get current user
@@ -38,7 +39,7 @@ export async function POST(
         .from('pipeline_stages')
         .update({ position: stage.position })
         .eq('id', stage.id)
-        .eq('pipeline_id', params.id)
+        .eq('pipeline_id', id)
     }
 
     return NextResponse.json({ success: true })

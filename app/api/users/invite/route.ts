@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
 
     // Parse request body
     const body = await request.json()
-    const { email, role } = body
+    const { email, role, contact_id } = body
 
     if (!email || !role) {
       return NextResponse.json(
@@ -78,15 +78,22 @@ export async function POST(request: NextRequest) {
     const expiresAt = new Date()
     expiresAt.setDate(expiresAt.getDate() + 7)
 
+    const insertData: any = {
+      email,
+      invited_by: user.id,
+      role,
+      token,
+      expires_at: expiresAt.toISOString(),
+    }
+
+    // Link to existing contact if provided
+    if (contact_id) {
+      insertData.contact_id = contact_id
+    }
+
     const { data: invitation, error: inviteError } = await supabase
       .from('user_invitations')
-      .insert({
-        email,
-        invited_by: user.id,
-        role,
-        token,
-        expires_at: expiresAt.toISOString(),
-      })
+      .insert(insertData)
       .select()
       .single()
 

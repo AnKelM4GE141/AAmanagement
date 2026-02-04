@@ -3,9 +3,10 @@ import { NextResponse } from 'next/server'
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const supabase = await createClient()
 
     // Get current user
@@ -33,7 +34,7 @@ export async function GET(
     const { data: pipeline, error: pipelineError } = await supabase
       .from('pipelines')
       .select('*')
-      .eq('id', params.id)
+      .eq('id', id)
       .single()
 
     if (pipelineError) {
@@ -44,7 +45,7 @@ export async function GET(
     const { data: stages, error: stagesError } = await supabase
       .from('pipeline_stages')
       .select('*')
-      .eq('pipeline_id', params.id)
+      .eq('pipeline_id', id)
       .order('position', { ascending: true })
 
     if (stagesError) {
@@ -63,9 +64,10 @@ export async function GET(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const supabase = await createClient()
 
     // Get current user
@@ -93,7 +95,7 @@ export async function DELETE(
     const { data: pipeline } = await supabase
       .from('pipelines')
       .select('is_default')
-      .eq('id', params.id)
+      .eq('id', id)
       .single()
 
     if (pipeline?.is_default) {
@@ -107,7 +109,7 @@ export async function DELETE(
     const { error: deleteError } = await supabase
       .from('pipelines')
       .delete()
-      .eq('id', params.id)
+      .eq('id', id)
 
     if (deleteError) {
       throw deleteError

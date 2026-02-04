@@ -26,10 +26,11 @@ export async function GET() {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
     }
 
-    // Get all users
+    // Get team members (admins only — non-admin users are tracked as contacts)
     const { data: members, error: membersError } = await supabase
       .from('users_profile')
       .select('id, full_name, email, role, is_owner, created_at')
+      .eq('role', 'admin')
       .order('created_at', { ascending: false })
 
     if (membersError) {

@@ -3,9 +3,10 @@ import { NextResponse } from 'next/server'
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params
     const supabase = await createClient()
 
     // Get current user
@@ -39,7 +40,7 @@ export async function PATCH(
     const { data: pipeline, error: updateError } = await supabase
       .from('pipelines')
       .update({ is_default: true })
-      .eq('id', params.id)
+      .eq('id', id)
       .select()
       .single()
 

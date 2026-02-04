@@ -117,6 +117,29 @@ export default function AcceptInvitePage() {
         .update({ accepted_at: new Date().toISOString() })
         .eq('id', invitation.id)
 
+      // Create or link contact for non-admin roles
+      if (invitation.role !== 'admin') {
+        if (invitation.contact_id) {
+          // Link existing contact to this new user
+          await supabase
+            .from('contacts')
+            .update({ user_id: authData.user.id })
+            .eq('id', invitation.contact_id)
+        } else {
+          // Create new contact linked to this user
+          await supabase
+            .from('contacts')
+            .insert({
+              full_name: fullName,
+              email: invitation.email,
+              phone: phone || null,
+              source: 'invitation',
+              user_id: authData.user.id,
+              created_by: invitation.invited_by,
+            })
+        }
+      }
+
       // Redirect to appropriate dashboard
       const dashboards = {
         admin: '/dashboard/admin',
