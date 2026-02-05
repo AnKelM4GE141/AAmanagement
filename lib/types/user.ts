@@ -8,6 +8,7 @@ export interface UserProfile {
   role: UserRole
   is_owner: boolean
   invited_by: string | null
+  avatar_url: string | null
   created_at: string
   updated_at: string
 }

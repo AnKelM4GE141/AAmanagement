@@ -20,6 +20,7 @@ import {
 import { useState, useEffect, useRef } from 'react'
 import { useSidebar } from './SidebarContext'
 import { createClient } from '@/lib/supabase/client'
+import ViewSwitcher from '@/components/admin/ViewSwitcher'
 
 interface NavigationItem {
   name: string
@@ -168,6 +169,11 @@ export default function AdminSidebar({
           )
         })}
       </nav>
+
+      {/* View Switcher */}
+      <div className="border-t border-slate-200/60 py-2">
+        <ViewSwitcher currentView="admin" collapsed={collapsed} />
+      </div>
 
       {/* Collapse toggle (desktop only) */}
       <div className="hidden lg:block border-t border-slate-200/60 px-2 py-2">

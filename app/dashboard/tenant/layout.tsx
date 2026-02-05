@@ -1,5 +1,8 @@
 import { requireRole } from '@/lib/auth/helpers'
+import { getViewAsRole } from '@/lib/auth/view-as'
 import SignOutButton from '@/components/auth/SignOutButton'
+import ViewAsBanner from '@/components/admin/ViewAsBanner'
+import ViewSwitcher from '@/components/admin/ViewSwitcher'
 import Link from 'next/link'
 
 export default async function TenantLayout({
@@ -8,9 +11,14 @@ export default async function TenantLayout({
   children: React.ReactNode
 }) {
   const profile = await requireRole(['tenant'])
+  const viewAsRole = await getViewAsRole()
+  const isImpersonating = profile.role === 'admin' && viewAsRole === 'tenant'
 
   return (
     <div className="min-h-screen bg-slate-50">
+      {/* Impersonation Banner */}
+      {isImpersonating && <ViewAsBanner role="tenant" />}
+
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-xl border-b border-slate-200/60 sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -28,10 +36,11 @@ export default async function TenantLayout({
             </div>
 
             <div className="flex items-center space-x-4">
+              {isImpersonating && <ViewSwitcher currentView="tenant" />}
               <span className="text-sm text-slate-700 hidden sm:block">
                 {profile.full_name}
               </span>
-              <SignOutButton />
+              {!isImpersonating && <SignOutButton />}
             </div>
           </div>
         </div>

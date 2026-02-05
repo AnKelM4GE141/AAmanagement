@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { UserProfile, UserRole } from '@/lib/types/user'
 import { redirect } from 'next/navigation'
+import { getViewAsRole } from '@/lib/auth/view-as'
 
 export async function getUser() {
   const supabase = await createClient()
@@ -43,6 +44,14 @@ export async function requireRole(allowedRoles: UserRole[]) {
 
   if (!profile) {
     redirect('/auth/login')
+  }
+
+  // Admin "View As" bypass — allow admins to access other role dashboards
+  if (profile.role === 'admin' && !allowedRoles.includes('admin')) {
+    const viewAs = await getViewAsRole()
+    if (viewAs && allowedRoles.includes(viewAs)) {
+      return profile // Return real admin profile but allow access
+    }
   }
 
   if (!allowedRoles.includes(profile.role)) {

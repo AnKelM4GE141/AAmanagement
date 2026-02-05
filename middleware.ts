@@ -63,15 +63,22 @@ export async function middleware(request: NextRequest) {
       if (profiles && profiles.length > 0) {
         const userRole = profiles[0].role
 
+        // Admin "View As" — let admins access other dashboards when impersonating
+        const viewAsRole = request.cookies.get('aa-view-as')?.value
+        const effectiveRole =
+          userRole === 'admin' && (viewAsRole === 'tenant' || viewAsRole === 'applicant')
+            ? viewAsRole
+            : userRole
+
         // Check if user is accessing their correct dashboard
         if (path.startsWith('/dashboard/admin') && userRole !== 'admin') {
           return NextResponse.redirect(new URL(`/dashboard/${userRole}`, request.url))
         }
-        if (path.startsWith('/dashboard/tenant') && userRole !== 'tenant') {
-          return NextResponse.redirect(new URL(`/dashboard/${userRole}`, request.url))
+        if (path.startsWith('/dashboard/tenant') && effectiveRole !== 'tenant') {
+          return NextResponse.redirect(new URL(`/dashboard/${effectiveRole}`, request.url))
         }
-        if (path.startsWith('/dashboard/applicant') && userRole !== 'applicant') {
-          return NextResponse.redirect(new URL(`/dashboard/${userRole}`, request.url))
+        if (path.startsWith('/dashboard/applicant') && effectiveRole !== 'applicant') {
+          return NextResponse.redirect(new URL(`/dashboard/${effectiveRole}`, request.url))
         }
       }
     }
