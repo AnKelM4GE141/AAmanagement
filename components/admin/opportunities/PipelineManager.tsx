@@ -147,21 +147,21 @@ export default function PipelineManager({
   }
 
   return (
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-slate-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="px-6 py-4 border-b border-gray-200 sticky top-0 bg-white z-10">
+        <div className="px-6 py-4 border-b border-slate-200 sticky top-0 bg-white z-10">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-medium text-gray-900">Manage Pipelines</h2>
+            <h2 className="text-lg font-medium text-slate-900">Manage Pipelines</h2>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-500"
+              className="text-slate-400 hover:text-slate-500"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
-          <p className="mt-1 text-sm text-gray-600">
+          <p className="mt-1 text-sm text-slate-600">
             Create and customize sales pipelines for different campaigns
           </p>
         </div>
@@ -170,7 +170,7 @@ export default function PipelineManager({
           {error && <Alert variant="error">{error}</Alert>}
 
           {/* Create New Pipeline */}
-          <div className="border border-dashed border-gray-300 rounded-lg p-4">
+          <div className="border border-dashed border-slate-300 rounded-lg p-4">
             {showNewPipelineForm ? (
               <div className="flex items-center space-x-3">
                 <input
@@ -178,7 +178,7 @@ export default function PipelineManager({
                   value={newPipelineName}
                   onChange={(e) => setNewPipelineName(e.target.value)}
                   placeholder="Pipeline name..."
-                  className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  className="flex-1 rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                   autoFocus
                   onKeyPress={(e) => {
                     if (e.key === 'Enter') handleCreatePipeline()
@@ -200,7 +200,7 @@ export default function PipelineManager({
             ) : (
               <button
                 onClick={() => setShowNewPipelineForm(true)}
-                className="w-full text-left text-sm text-gray-600 hover:text-gray-900 flex items-center"
+                className="w-full text-left text-sm text-slate-600 hover:text-slate-900 flex items-center"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -213,30 +213,30 @@ export default function PipelineManager({
           {/* Pipeline List */}
           {isLoading ? (
             <div className="flex justify-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
             </div>
           ) : (
             <div className="space-y-3">
               {pipelines.map((pipeline) => (
                 <div
                   key={pipeline.id}
-                  className={`border rounded-lg p-4 hover:border-blue-300 transition-colors ${
-                    pipeline.is_default ? 'border-blue-500 bg-blue-50' : 'border-gray-200'
+                  className={`border rounded-lg p-4 hover:border-primary-300 transition-colors ${
+                    pipeline.is_default ? 'border-primary-500 bg-primary-50' : 'border-slate-200'
                   }`}
                 >
                   <div className="flex items-start justify-between">
                     <div className="flex-1">
                       <div className="flex items-center space-x-2">
-                        <h3 className="text-sm font-medium text-gray-900">
+                        <h3 className="text-sm font-medium text-slate-900">
                           {pipeline.name}
                         </h3>
                         {pipeline.is_default && (
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary-100 text-primary-800">
                             Default
                           </span>
                         )}
                       </div>
-                      <p className="mt-1 text-xs text-gray-500">
+                      <p className="mt-1 text-xs text-slate-500">
                         {pipeline.stage_count} stages
                       </p>
                     </div>
@@ -244,7 +244,7 @@ export default function PipelineManager({
                     <div className="flex items-center space-x-2 ml-4">
                       <button
                         onClick={() => setEditingPipelineId(pipeline.id)}
-                        className="text-gray-400 hover:text-blue-600"
+                        className="text-slate-400 hover:text-primary-600"
                         title="Edit pipeline"
                       >
                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -256,7 +256,7 @@ export default function PipelineManager({
                         <>
                           <button
                             onClick={() => handleSetDefault(pipeline.id)}
-                            className="text-gray-400 hover:text-blue-600"
+                            className="text-slate-400 hover:text-primary-600"
                             title="Set as default"
                           >
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -266,7 +266,7 @@ export default function PipelineManager({
 
                           <button
                             onClick={() => handleDeletePipeline(pipeline.id)}
-                            className="text-gray-400 hover:text-red-600"
+                            className="text-slate-400 hover:text-red-600"
                             title="Delete pipeline"
                           >
                             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

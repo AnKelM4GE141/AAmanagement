@@ -190,30 +190,30 @@ export default function CreateOpportunityModal({
   }
 
   return (
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-slate-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-6 py-4 border-b border-slate-200">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-medium text-gray-900">
+            <h2 className="text-lg font-medium text-slate-900">
               {isEditing ? 'Edit Opportunity' : 'Create Opportunity'}
             </h2>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-500"
+              className="text-slate-400 hover:text-slate-500"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
-          <p className="mt-1 text-sm text-gray-600">
+          <p className="mt-1 text-sm text-slate-600">
             {isEditing ? `Update opportunity for ${contact.full_name}` : `Create a new opportunity for ${contact.full_name}`}
           </p>
         </div>
 
         {isLoadingData ? (
           <div className="flex justify-center py-12">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600" />
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="px-6 py-4 space-y-4">
@@ -222,14 +222,14 @@ export default function CreateOpportunityModal({
             {/* Pipeline */}
             {!isEditing && pipelines.length > 1 && (
               <div>
-                <label htmlFor="pipeline" className="block text-sm font-medium text-gray-700 mb-1">
+                <label htmlFor="pipeline" className="block text-sm font-medium text-slate-700 mb-1">
                   Pipeline
                 </label>
                 <select
                   id="pipeline"
                   value={formData.pipeline_id}
                   onChange={(e) => handlePipelineChange(e.target.value)}
-                  className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                  className="block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                   required
                 >
                   {pipelines.map((pipeline) => (
@@ -243,14 +243,14 @@ export default function CreateOpportunityModal({
 
             {/* Stage */}
             <div>
-              <label htmlFor="stage" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="stage" className="block text-sm font-medium text-slate-700 mb-1">
                 Stage
               </label>
               <select
                 id="stage"
                 value={formData.stage_id}
                 onChange={(e) => setFormData({ ...formData, stage_id: e.target.value })}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                className="block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                 required
               >
                 <option value="">Select a stage...</option>
@@ -264,14 +264,14 @@ export default function CreateOpportunityModal({
 
             {/* Property */}
             <div>
-              <label htmlFor="property" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="property" className="block text-sm font-medium text-slate-700 mb-1">
                 Property (Optional)
               </label>
               <select
                 id="property"
                 value={formData.property_id}
                 onChange={(e) => setFormData({ ...formData, property_id: e.target.value })}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                className="block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
               >
                 <option value="">No property selected</option>
                 {properties.map((property) => (
@@ -302,7 +302,7 @@ export default function CreateOpportunityModal({
 
             {/* Notes */}
             <div>
-              <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="notes" className="block text-sm font-medium text-slate-700 mb-1">
                 Notes (Optional)
               </label>
               <textarea
@@ -310,7 +310,7 @@ export default function CreateOpportunityModal({
                 rows={3}
                 value={formData.notes}
                 onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                className="block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                 placeholder="Any additional notes..."
               />
             </div>

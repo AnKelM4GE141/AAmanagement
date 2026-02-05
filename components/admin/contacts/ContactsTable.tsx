@@ -96,7 +96,7 @@ export default function ContactsTable() {
   function getSourceBadgeColor(source: string) {
     switch (source) {
       case 'signup':
-        return 'bg-blue-100 text-blue-800'
+        return 'bg-primary-100 text-primary-800'
       case 'invitation':
         return 'bg-purple-100 text-purple-800'
       case 'facebook':
@@ -106,19 +106,19 @@ export default function ContactsTable() {
       case 'phone':
         return 'bg-yellow-100 text-yellow-800'
       case 'manual':
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-slate-100 text-slate-800'
       default:
-        return 'bg-gray-100 text-gray-600'
+        return 'bg-slate-100 text-slate-600'
     }
   }
 
   function getStageBadgeColor(stage: string | null) {
-    if (!stage) return 'bg-gray-100 text-gray-600'
+    if (!stage) return 'bg-slate-100 text-slate-600'
     switch (stage) {
       case 'lead':
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-slate-100 text-slate-800'
       case 'contacted':
-        return 'bg-blue-100 text-blue-800'
+        return 'bg-primary-100 text-primary-800'
       case 'application_submitted':
       case 'application_reviewing':
         return 'bg-yellow-100 text-yellow-800'
@@ -130,7 +130,7 @@ export default function ContactsTable() {
       case 'lost':
         return 'bg-red-100 text-red-800'
       default:
-        return 'bg-gray-100 text-gray-600'
+        return 'bg-slate-100 text-slate-600'
     }
   }
 
@@ -166,7 +166,7 @@ export default function ContactsTable() {
   if (isLoading) {
     return (
       <div className="flex justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
       </div>
     )
   }
@@ -184,10 +184,10 @@ export default function ContactsTable() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+      <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="search" className="block text-sm font-medium text-slate-700 mb-1">
               Search
             </label>
             <input
@@ -196,19 +196,19 @@ export default function ContactsTable() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by name, email, or phone..."
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
             />
           </div>
 
           <div>
-            <label htmlFor="source" className="block text-sm font-medium text-gray-700 mb-1">
+            <label htmlFor="source" className="block text-sm font-medium text-slate-700 mb-1">
               Filter by Source
             </label>
             <select
               id="source"
               value={sourceFilter}
               onChange={(e) => setSourceFilter(e.target.value)}
-              className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              className="block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
             >
               <option value="all">All Sources</option>
               <option value="manual">Manual</option>
@@ -224,16 +224,16 @@ export default function ContactsTable() {
       </div>
 
       {/* Summary */}
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-slate-600">
         Showing {filteredContacts.length} of {contacts.length} contacts
       </div>
 
       {/* Contacts Table */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+      <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
         {filteredContacts.length === 0 ? (
           <div className="text-center py-12">
             <svg
-              className="mx-auto h-12 w-12 text-gray-400"
+              className="mx-auto h-12 w-12 text-slate-400"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -245,53 +245,53 @@ export default function ContactsTable() {
                 d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <p className="mt-4 text-sm text-gray-600">
+            <p className="mt-4 text-sm text-slate-600">
               No contacts found. Click &quot;+ New Contact&quot; to add one.
             </p>
           </div>
         ) : (
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-slate-200">
+            <thead className="bg-slate-50">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                   Contact
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                   Phone
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                   Source
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                   Latest Stage
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                   Added
                 </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-slate-200">
               {filteredContacts.map((contact) => {
                 const hasOpportunity = contact.opportunity_count > 0
                 return (
                   <tr
                     key={contact.id}
-                    className="hover:bg-gray-50 cursor-pointer"
+                    className="hover:bg-slate-50 cursor-pointer"
                     onClick={() => handleRowClick(contact)}
                   >
                     <td className="px-6 py-4 whitespace-nowrap">
                       <div className="flex items-center">
                         <div className="flex-shrink-0 h-10 w-10">
-                          <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-medium">
+                          <div className="h-10 w-10 rounded-full bg-primary-600 flex items-center justify-center text-white font-medium">
                             {contact.full_name.charAt(0).toUpperCase()}
                           </div>
                         </div>
                         <div className="ml-4">
                           <div className="flex items-center gap-2">
-                            <span className="text-sm font-medium text-gray-900">
+                            <span className="text-sm font-medium text-slate-900">
                               {contact.full_name}
                             </span>
                             {contact.has_user_account && (
@@ -300,11 +300,11 @@ export default function ContactsTable() {
                               </span>
                             )}
                           </div>
-                          <div className="text-sm text-gray-500">{contact.email || 'No email'}</div>
+                          <div className="text-sm text-slate-500">{contact.email || 'No email'}</div>
                         </div>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
                       {contact.phone || '-'}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -325,7 +325,7 @@ export default function ContactsTable() {
                         {formatStageName(contact.latest_opportunity_stage)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
                       {new Date(contact.created_at).toLocaleDateString()}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">

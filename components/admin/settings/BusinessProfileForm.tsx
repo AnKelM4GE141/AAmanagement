@@ -95,7 +95,7 @@ export default function BusinessProfileForm() {
   if (isLoading) {
     return (
       <div className="flex justify-center py-8">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
       </div>
     )
   }
@@ -107,7 +107,7 @@ export default function BusinessProfileForm() {
 
       {/* Logo Upload */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-slate-700 mb-2">
           Business Logo
         </label>
         <LogoUpload
@@ -153,7 +153,7 @@ export default function BusinessProfileForm() {
       <div>
         <label
           htmlFor="address"
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-medium text-slate-700 mb-1"
         >
           Address
         </label>
@@ -164,7 +164,7 @@ export default function BusinessProfileForm() {
           onChange={(e) =>
             setSettings({ ...settings, address: e.target.value })
           }
-          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          className="block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
           placeholder="123 Main St, City, State 12345"
         />
       </div>
@@ -173,7 +173,7 @@ export default function BusinessProfileForm() {
       <div>
         <label
           htmlFor="timezone"
-          className="block text-sm font-medium text-gray-700 mb-1"
+          className="block text-sm font-medium text-slate-700 mb-1"
         >
           Timezone
         </label>
@@ -183,7 +183,7 @@ export default function BusinessProfileForm() {
           onChange={(e) =>
             setSettings({ ...settings, timezone: e.target.value })
           }
-          className="block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+          className="block w-full rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
         >
           <option value="America/New_York">Eastern Time (ET)</option>
           <option value="America/Chicago">Central Time (CT)</option>

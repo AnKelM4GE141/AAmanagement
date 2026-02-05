@@ -118,12 +118,38 @@ export default function SignupPage() {
     }
   }
 
+  // Decorative panel (shared across all states)
+  const decorativePanel = (
+    <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-primary-900" />
+      <div
+        className="absolute inset-0 opacity-10"
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.3) 1px, transparent 0)',
+          backgroundSize: '40px 40px',
+        }}
+      />
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary-500/20 rounded-full blur-3xl" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-400/10 rounded-full blur-3xl" />
+      <div className="relative flex items-center justify-center w-full">
+        <div className="text-center">
+          <h2 className="text-4xl font-extrabold text-white">AA Portal</h2>
+          <p className="text-primary-200 mt-3 text-lg">Property Management Platform</p>
+        </div>
+      </div>
+    </div>
+  )
+
   if (isCheckingUsers) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+      <div className="flex min-h-screen">
+        {decorativePanel}
+        <div className="flex flex-1 items-center justify-center bg-slate-50">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+            <p className="mt-4 text-slate-500">Loading...</p>
+          </div>
         </div>
       </div>
     )
@@ -131,21 +157,24 @@ export default function SignupPage() {
 
   if (signupDisabled) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
-        <div className="w-full max-w-md">
-          <Card>
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">
-                Signup Unavailable
-              </h2>
-              <p className="text-gray-600 mb-6">
-                An admin account already exists. Please contact your administrator for an invitation.
-              </p>
-              <Link href="/auth/login">
-                <Button fullWidth>Go to Login</Button>
-              </Link>
-            </div>
-          </Card>
+      <div className="flex min-h-screen">
+        {decorativePanel}
+        <div className="flex flex-1 items-center justify-center px-4 sm:px-6 lg:px-8 bg-slate-50">
+          <div className="w-full max-w-md animate-fade-in-up">
+            <Card>
+              <div className="text-center">
+                <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                  Signup Unavailable
+                </h2>
+                <p className="text-slate-600 mb-6">
+                  An admin account already exists. Please contact your administrator for an invitation.
+                </p>
+                <Link href="/auth/login">
+                  <Button fullWidth>Go to Login</Button>
+                </Link>
+              </div>
+            </Card>
+          </div>
         </div>
       </div>
     )
@@ -153,94 +182,108 @@ export default function SignupPage() {
 
   if (success) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
-        <div className="w-full max-w-md">
-          <Card>
-            <Alert variant="success">
-              <div>
-                <p className="font-semibold mb-2">Account created successfully!</p>
-                <p>You are now the owner/admin. Redirecting to your dashboard...</p>
-              </div>
-            </Alert>
-          </Card>
+      <div className="flex min-h-screen">
+        {decorativePanel}
+        <div className="flex flex-1 items-center justify-center px-4 sm:px-6 lg:px-8 bg-slate-50">
+          <div className="w-full max-w-md animate-fade-in-up">
+            <Card>
+              <Alert variant="success">
+                <div>
+                  <p className="font-semibold mb-2">Account created successfully!</p>
+                  <p>You are now the owner/admin. Redirecting to your dashboard...</p>
+                </div>
+              </Alert>
+            </Card>
+          </div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12">
-      <div className="w-full max-w-md">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">AA Portal</h1>
-          <p className="text-gray-600 mt-2">Create your owner account</p>
-          <p className="text-sm text-blue-600 mt-1">
-            You will become the administrator
-          </p>
-        </div>
+    <div className="flex min-h-screen">
+      {decorativePanel}
 
-        <Card>
-          <form onSubmit={handleSignup} className="space-y-4">
-            {error && <Alert variant="error">{error}</Alert>}
-
-            <Input
-              label="Full Name"
-              type="text"
-              placeholder="John Doe"
-              value={fullName}
-              onChange={(e) => setFullName(e.target.value)}
-              required
-            />
-
-            <Input
-              label="Email"
-              type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              autoComplete="email"
-            />
-
-            <Input
-              label="Phone"
-              type="tel"
-              placeholder="+1 (555) 123-4567"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-            />
-
-            <Input
-              label="Password"
-              type="password"
-              placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              helperText="At least 8 characters"
-            />
-
-            <Input
-              label="Confirm Password"
-              type="password"
-              placeholder="••••••••"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-
-            <Button type="submit" fullWidth isLoading={isLoading}>
-              Create Owner Account
-            </Button>
-          </form>
-
-          <div className="mt-6 text-center text-sm text-gray-600">
-            Already have an account?{' '}
-            <Link href="/auth/login" className="text-blue-600 hover:text-blue-500 font-medium">
-              Sign In
-            </Link>
+      {/* Right form panel */}
+      <div className="flex flex-1 items-center justify-center px-4 sm:px-6 lg:px-8 bg-slate-50 py-12">
+        <div className="w-full max-w-md animate-fade-in-up">
+          {/* Mobile logo */}
+          <div className="text-center mb-8 lg:hidden">
+            <h1 className="text-3xl font-bold text-slate-900">AA Portal</h1>
+            <p className="text-slate-500 mt-2">Create your owner account</p>
           </div>
-        </Card>
+          {/* Desktop heading */}
+          <div className="hidden lg:block text-center mb-8">
+            <h1 className="text-2xl font-bold text-slate-900">Get Started</h1>
+            <p className="text-slate-500 mt-2">Create your owner account</p>
+            <p className="text-sm text-primary-600 mt-1">
+              You will become the administrator
+            </p>
+          </div>
+
+          <Card>
+            <form onSubmit={handleSignup} className="space-y-4">
+              {error && <Alert variant="error">{error}</Alert>}
+
+              <Input
+                label="Full Name"
+                type="text"
+                placeholder="John Doe"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                required
+              />
+
+              <Input
+                label="Email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="email"
+              />
+
+              <Input
+                label="Phone"
+                type="tel"
+                placeholder="+1 (555) 123-4567"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              />
+
+              <Input
+                label="Password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                helperText="At least 8 characters"
+              />
+
+              <Input
+                label="Confirm Password"
+                type="password"
+                placeholder="••••••••"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+              />
+
+              <Button type="submit" fullWidth isLoading={isLoading}>
+                Create Owner Account
+              </Button>
+            </form>
+
+            <div className="mt-6 text-center text-sm text-slate-600">
+              Already have an account?{' '}
+              <Link href="/auth/login" className="text-primary-600 hover:text-primary-500 font-medium">
+                Sign In
+              </Link>
+            </div>
+          </Card>
+        </div>
       </div>
     </div>
   )

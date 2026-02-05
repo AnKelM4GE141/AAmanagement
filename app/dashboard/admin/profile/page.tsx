@@ -7,8 +7,8 @@ export default async function ProfilePage() {
   return (
     <div className="max-w-2xl">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900">Profile</h1>
-        <p className="mt-1 text-sm text-gray-600">
+        <h1 className="text-2xl font-bold text-slate-900">Profile</h1>
+        <p className="mt-1 text-sm text-slate-600">
           Manage your personal account settings
         </p>
       </div>

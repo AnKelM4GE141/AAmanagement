@@ -122,9 +122,9 @@ export default function ManualPaymentForm({
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Tenant Info */}
         {(tenantName || unitNumber) && (
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <p className="text-sm text-gray-600">Recording payment for:</p>
-            <p className="font-medium text-gray-900">
+          <div className="bg-slate-50 p-4 rounded-lg">
+            <p className="text-sm text-slate-600">Recording payment for:</p>
+            <p className="font-medium text-slate-900">
               {tenantName}
               {unitNumber && ` - Unit ${unitNumber}`}
             </p>
@@ -135,7 +135,7 @@ export default function ManualPaymentForm({
         <div>
           <label
             htmlFor="payment_type"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-slate-700 mb-1"
           >
             Payment Type
           </label>
@@ -144,7 +144,7 @@ export default function ManualPaymentForm({
             name="payment_type"
             value={formData.payment_type}
             onChange={handleChange}
-            className="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
             required
           >
             <option value="rent">Rent Payment</option>
@@ -157,12 +157,12 @@ export default function ManualPaymentForm({
         <div>
           <label
             htmlFor="amount"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-slate-700 mb-1"
           >
             Amount
           </label>
           <div className="relative">
-            <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+            <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-500">
               $
             </span>
             <input
@@ -173,7 +173,7 @@ export default function ManualPaymentForm({
               onChange={handleChange}
               step="0.01"
               min="0"
-              className="block w-full pl-7 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="block w-full pl-7 pr-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
               required
             />
           </div>
@@ -183,7 +183,7 @@ export default function ManualPaymentForm({
         <div>
           <label
             htmlFor="payment_method"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-slate-700 mb-1"
           >
             Payment Method
           </label>
@@ -192,7 +192,7 @@ export default function ManualPaymentForm({
             name="payment_method"
             value={formData.payment_method}
             onChange={handleChange}
-            className="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
             required
           >
             <option value="check">Check</option>
@@ -205,7 +205,7 @@ export default function ManualPaymentForm({
         <div>
           <label
             htmlFor="payment_date"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-slate-700 mb-1"
           >
             Payment Date
           </label>
@@ -215,7 +215,7 @@ export default function ManualPaymentForm({
             name="payment_date"
             value={formData.payment_date}
             onChange={handleChange}
-            className="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
             required
           />
         </div>
@@ -224,7 +224,7 @@ export default function ManualPaymentForm({
         <div>
           <label
             htmlFor="notes"
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="block text-sm font-medium text-slate-700 mb-1"
           >
             Notes (Optional)
           </label>
@@ -234,14 +234,14 @@ export default function ManualPaymentForm({
             value={formData.notes}
             onChange={handleChange}
             rows={3}
-            className="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            className="block w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
             placeholder="Check number, reference, or other notes..."
           />
         </div>
 
         {/* Period Info */}
-        <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
-          <p className="text-xs text-blue-700">
+        <div className="bg-primary-50 p-3 rounded-lg border border-primary-200">
+          <p className="text-xs text-primary-700">
             This payment will be recorded for the period: {periodStart} to{' '}
             {periodEnd}
           </p>

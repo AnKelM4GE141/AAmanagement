@@ -147,7 +147,7 @@ export default function OpportunityKanban({ pipelineId }: OpportunityKanbanProps
   if (isLoading) {
     return (
       <div className="flex justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
       </div>
     )
   }
@@ -159,7 +159,7 @@ export default function OpportunityKanban({ pipelineId }: OpportunityKanbanProps
   if (stages.length === 0) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-600">
+        <p className="text-slate-600">
           No stages configured for this pipeline. Click "Manage Pipelines" to add stages.
         </p>
       </div>

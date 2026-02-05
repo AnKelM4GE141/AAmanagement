@@ -95,7 +95,7 @@ export default function LogoUpload({
               <img
                 src={previewUrl}
                 alt="Business logo"
-                className="h-20 w-20 object-contain rounded-lg border-2 border-gray-200 bg-white p-2"
+                className="h-20 w-20 object-contain rounded-lg border-2 border-slate-200 bg-white p-2"
               />
               <button
                 type="button"
@@ -119,9 +119,9 @@ export default function LogoUpload({
               </button>
             </div>
           ) : (
-            <div className="h-20 w-20 flex items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-gray-50">
+            <div className="h-20 w-20 flex items-center justify-center rounded-lg border-2 border-dashed border-slate-300 bg-slate-50">
               <svg
-                className="w-8 h-8 text-gray-400"
+                className="w-8 h-8 text-slate-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -157,7 +157,7 @@ export default function LogoUpload({
               {isUploading ? 'Uploading...' : 'Upload Logo'}
             </Button>
           </label>
-          <p className="mt-2 text-xs text-gray-600">
+          <p className="mt-2 text-xs text-slate-600">
             PNG, JPG, SVG, or WebP. Max 2MB. Recommended: 200x200px
           </p>
         </div>

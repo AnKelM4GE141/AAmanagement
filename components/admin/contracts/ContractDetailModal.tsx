@@ -55,12 +55,12 @@ export default function ContractDetailModal({
   }
 
   return (
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-slate-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="px-6 py-4 border-b border-gray-200">
+        <div className="px-6 py-4 border-b border-slate-200">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-medium text-gray-900">Contract Details</h2>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-500">
+            <h2 className="text-lg font-medium text-slate-900">Contract Details</h2>
+            <button onClick={onClose} className="text-slate-400 hover:text-slate-500">
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -73,14 +73,14 @@ export default function ContractDetailModal({
 
           {/* Status Timeline */}
           <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-3">Status</h3>
+            <h3 className="text-sm font-medium text-slate-700 mb-3">Status</h3>
             <div className="flex items-center gap-2">
               {statusSteps.map((step, i) => {
                 const isActive = i <= statusIndex
                 return (
                   <div key={step.key} className="flex items-center">
                     {i > 0 && (
-                      <div className={`w-8 h-0.5 ${isActive ? 'bg-blue-500' : 'bg-gray-200'}`} />
+                      <div className={`w-8 h-0.5 ${isActive ? 'bg-primary-500' : 'bg-slate-200'}`} />
                     )}
                     <div className="flex flex-col items-center">
                       <div
@@ -88,8 +88,8 @@ export default function ContractDetailModal({
                           isActive
                             ? step.key === 'signed' && isSigned
                               ? 'bg-green-600 text-white'
-                              : 'bg-blue-600 text-white'
-                            : 'bg-gray-100 text-gray-400'
+                              : 'bg-primary-600 text-white'
+                            : 'bg-slate-100 text-slate-400'
                         }`}
                       >
                         {isActive && step.key === 'signed' && isSigned ? (
@@ -100,7 +100,7 @@ export default function ContractDetailModal({
                           i + 1
                         )}
                       </div>
-                      <span className={`mt-1 text-xs ${isActive ? 'text-blue-600 font-medium' : 'text-gray-400'}`}>
+                      <span className={`mt-1 text-xs ${isActive ? 'text-primary-600 font-medium' : 'text-slate-400'}`}>
                         {step.label}
                       </span>
                     </div>
@@ -113,35 +113,35 @@ export default function ContractDetailModal({
           {/* Contract Info */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <p className="text-xs font-medium text-gray-500 uppercase">Applicant</p>
-              <p className="text-sm text-gray-900 mt-1">{contract.applicant.full_name}</p>
-              <p className="text-xs text-gray-500">{contract.applicant.email}</p>
+              <p className="text-xs font-medium text-slate-500 uppercase">Applicant</p>
+              <p className="text-sm text-slate-900 mt-1">{contract.applicant.full_name}</p>
+              <p className="text-xs text-slate-500">{contract.applicant.email}</p>
             </div>
             <div>
-              <p className="text-xs font-medium text-gray-500 uppercase">Property</p>
-              <p className="text-sm text-gray-900 mt-1">{contract.property?.address || '—'}</p>
+              <p className="text-xs font-medium text-slate-500 uppercase">Property</p>
+              <p className="text-sm text-slate-900 mt-1">{contract.property?.address || '—'}</p>
             </div>
             <div>
-              <p className="text-xs font-medium text-gray-500 uppercase">Document</p>
-              <p className="text-sm text-gray-900 mt-1">{contract.document_file_name}</p>
+              <p className="text-xs font-medium text-slate-500 uppercase">Document</p>
+              <p className="text-sm text-slate-900 mt-1">{contract.document_file_name}</p>
             </div>
             <div>
-              <p className="text-xs font-medium text-gray-500 uppercase">Created</p>
-              <p className="text-sm text-gray-900 mt-1">
+              <p className="text-xs font-medium text-slate-500 uppercase">Created</p>
+              <p className="text-sm text-slate-900 mt-1">
                 {new Date(contract.created_at).toLocaleDateString()}
               </p>
             </div>
           </div>
 
           {/* Tabs */}
-          <div className="border-b border-gray-200">
+          <div className="border-b border-slate-200">
             <nav className="flex gap-6">
               <button
                 onClick={() => setActiveTab('document')}
                 className={`pb-3 text-sm font-medium border-b-2 transition-colors ${
                   activeTab === 'document'
-                    ? 'border-blue-500 text-blue-600'
-                    : 'border-transparent text-gray-500 hover:text-gray-700'
+                    ? 'border-primary-500 text-primary-600'
+                    : 'border-transparent text-slate-500 hover:text-slate-700'
                 }`}
               >
                 {isSigned && contract.signed_document_url ? 'Signed Document' : 'Document'}
@@ -151,8 +151,8 @@ export default function ContractDetailModal({
                   onClick={() => setActiveTab('audit')}
                   className={`pb-3 text-sm font-medium border-b-2 transition-colors ${
                     activeTab === 'audit'
-                      ? 'border-blue-500 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700'
+                      ? 'border-primary-500 text-primary-600'
+                      : 'border-transparent text-slate-500 hover:text-slate-700'
                   }`}
                 >
                   Audit Trail
@@ -166,7 +166,7 @@ export default function ContractDetailModal({
             <div>
               <iframe
                 src={isSigned && contract.signed_document_url ? contract.signed_document_url : contract.document_url}
-                className="w-full rounded-md border border-gray-200"
+                className="w-full rounded-md border border-slate-200"
                 style={{ height: '400px' }}
                 title="Contract PDF"
               />
@@ -185,10 +185,10 @@ export default function ContractDetailModal({
           {activeTab === 'audit' && isSigned && (
             <div className="space-y-4">
               {/* Signature */}
-              <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
-                <h4 className="text-sm font-medium text-gray-700 mb-3">Signature</h4>
+              <div className="bg-slate-50 rounded-lg border border-slate-200 p-4">
+                <h4 className="text-sm font-medium text-slate-700 mb-3">Signature</h4>
                 {contract.signature_data_url && (
-                  <div className="bg-white border border-gray-200 rounded-md p-3 inline-block">
+                  <div className="bg-white border border-slate-200 rounded-md p-3 inline-block">
                     <img
                       src={contract.signature_data_url}
                       alt="Applicant signature"
@@ -197,18 +197,18 @@ export default function ContractDetailModal({
                   </div>
                 )}
                 <div className="mt-2">
-                  <p className="text-sm text-gray-900">{contract.applicant.full_name}</p>
-                  <p className="text-xs text-gray-500">{contract.applicant.email}</p>
+                  <p className="text-sm text-slate-900">{contract.applicant.full_name}</p>
+                  <p className="text-xs text-slate-500">{contract.applicant.email}</p>
                 </div>
               </div>
 
               {/* Audit Details */}
-              <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
-                <h4 className="text-sm font-medium text-gray-700 mb-3">Signing Details</h4>
+              <div className="bg-slate-50 rounded-lg border border-slate-200 p-4">
+                <h4 className="text-sm font-medium text-slate-700 mb-3">Signing Details</h4>
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Signed at</span>
-                    <span className="text-gray-900 font-medium">
+                    <span className="text-slate-500">Signed at</span>
+                    <span className="text-slate-900 font-medium">
                       {contract.signed_at
                         ? new Date(contract.signed_at).toLocaleString('en-US', {
                             year: 'numeric',
@@ -223,14 +223,14 @@ export default function ContractDetailModal({
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Signer IP</span>
-                    <span className="text-gray-900 font-mono text-xs">
+                    <span className="text-slate-500">Signer IP</span>
+                    <span className="text-slate-900 font-mono text-xs">
                       {contract.signer_ip || '—'}
                     </span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">User Agent</span>
-                    <span className="text-gray-900 font-mono text-xs max-w-xs truncate" title={contract.signer_user_agent || ''}>
+                    <span className="text-slate-500">User Agent</span>
+                    <span className="text-slate-900 font-mono text-xs max-w-xs truncate" title={contract.signer_user_agent || ''}>
                       {contract.signer_user_agent || '—'}
                     </span>
                   </div>
@@ -238,8 +238,8 @@ export default function ContractDetailModal({
               </div>
 
               {/* Event Timeline */}
-              <div className="bg-gray-50 rounded-lg border border-gray-200 p-4">
-                <h4 className="text-sm font-medium text-gray-700 mb-3">Event Timeline</h4>
+              <div className="bg-slate-50 rounded-lg border border-slate-200 p-4">
+                <h4 className="text-sm font-medium text-slate-700 mb-3">Event Timeline</h4>
                 <div className="space-y-3">
                   <TimelineEvent
                     label="Contract created"
@@ -281,7 +281,7 @@ export default function ContractDetailModal({
           )}
 
           {/* Actions */}
-          <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+          <div className="flex items-center justify-between pt-4 border-t border-slate-200">
             <div className="flex gap-2">
               {contract.status === 'draft' && (
                 <Button variant="primary" isLoading={sending} onClick={handleSend}>
@@ -337,8 +337,8 @@ function TimelineEvent({
   highlight?: boolean
 }) {
   const iconColors: Record<string, string> = {
-    create: 'bg-gray-200 text-gray-600',
-    send: 'bg-blue-100 text-blue-600',
+    create: 'bg-slate-200 text-slate-600',
+    send: 'bg-primary-100 text-primary-600',
     view: 'bg-yellow-100 text-yellow-600',
     sign: 'bg-green-100 text-green-600',
     pdf: 'bg-purple-100 text-purple-600',
@@ -379,10 +379,10 @@ function TimelineEvent({
         {icons[icon]}
       </div>
       <div className="flex-1 min-w-0">
-        <p className={`text-sm ${highlight ? 'text-green-700 font-medium' : 'text-gray-700'}`}>
+        <p className={`text-sm ${highlight ? 'text-green-700 font-medium' : 'text-slate-700'}`}>
           {label}
         </p>
-        <p className="text-xs text-gray-400">
+        <p className="text-xs text-slate-400">
           {new Date(date).toLocaleString('en-US', {
             year: 'numeric',
             month: 'short',

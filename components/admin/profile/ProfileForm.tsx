@@ -113,12 +113,12 @@ export default function ProfileForm({
     <form onSubmit={handleSave} className="space-y-6">
       {/* Avatar */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-3">
+        <label className="block text-sm font-medium text-slate-700 mb-3">
           Profile Picture
         </label>
         <div className="flex items-center gap-4">
           <div
-            className="relative h-16 w-16 rounded-full bg-blue-600 flex items-center justify-center text-white text-xl font-medium overflow-hidden cursor-pointer group"
+            className="relative h-16 w-16 rounded-full bg-primary-600 flex items-center justify-center text-white text-xl font-medium overflow-hidden cursor-pointer group"
             onClick={() => fileInputRef.current?.click()}
           >
             {avatarUrl ? (
@@ -156,11 +156,11 @@ export default function ProfileForm({
               type="button"
               onClick={() => fileInputRef.current?.click()}
               disabled={uploading}
-              className="text-sm font-medium text-blue-600 hover:text-blue-500 disabled:text-gray-400"
+              className="text-sm font-medium text-primary-600 hover:text-primary-500 disabled:text-slate-400"
             >
               {uploading ? 'Uploading...' : 'Change photo'}
             </button>
-            <p className="text-xs text-gray-500 mt-0.5">JPG, PNG. Max 2MB.</p>
+            <p className="text-xs text-slate-500 mt-0.5">JPG, PNG. Max 2MB.</p>
           </div>
           <input
             ref={fileInputRef}
@@ -174,7 +174,7 @@ export default function ProfileForm({
 
       {/* Full Name */}
       <div>
-        <label htmlFor="full_name" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="full_name" className="block text-sm font-medium text-slate-700">
           Full Name
         </label>
         <input
@@ -183,13 +183,13 @@ export default function ProfileForm({
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           required
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
         />
       </div>
 
       {/* Email (read-only) */}
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="email" className="block text-sm font-medium text-slate-700">
           Email
         </label>
         <input
@@ -197,16 +197,16 @@ export default function ProfileForm({
           type="email"
           value={initialEmail}
           disabled
-          className="mt-1 block w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-500"
+          className="mt-1 block w-full rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm text-slate-500"
         />
-        <p className="mt-1 text-xs text-gray-400">
+        <p className="mt-1 text-xs text-slate-400">
           Email cannot be changed here
         </p>
       </div>
 
       {/* Phone */}
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
+        <label htmlFor="phone" className="block text-sm font-medium text-slate-700">
           Phone
         </label>
         <input
@@ -215,7 +215,7 @@ export default function ProfileForm({
           value={phone}
           onChange={(e) => setPhone(e.target.value)}
           placeholder="(555) 123-4567"
-          className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          className="mt-1 block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
         />
       </div>
 
@@ -237,7 +237,7 @@ export default function ProfileForm({
         <button
           type="submit"
           disabled={saving}
-          className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 disabled:bg-blue-300 transition-colors"
+          className="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 disabled:bg-primary-300 transition-colors"
         >
           {saving ? 'Saving...' : 'Save Changes'}
         </button>

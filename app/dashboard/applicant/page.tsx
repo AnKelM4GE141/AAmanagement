@@ -63,13 +63,13 @@ export default async function ApplicantDashboard() {
   const hasContracts = (contracts || []).length > 0
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fade-in-up">
       {/* Welcome Section */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-slate-900">
           Welcome, {profile.full_name}
         </h1>
-        <p className="text-gray-600 mt-1">Applicant Portal</p>
+        <p className="text-slate-600 mt-1">Applicant Portal</p>
       </div>
 
       {/* Pending Contracts - ready to sign */}
@@ -83,20 +83,20 @@ export default async function ApplicantDashboard() {
               {pendingContracts.map((contract: any) => (
                 <div
                   key={contract.id}
-                  className="flex items-center justify-between p-4 bg-blue-50 border border-blue-200 rounded-lg"
+                  className="flex items-center justify-between p-4 bg-primary-50 border border-primary-200 rounded-lg"
                 >
                   <div>
-                    <p className="font-medium text-blue-900">
+                    <p className="font-medium text-primary-900">
                       You have a lease agreement to sign
                     </p>
-                    <p className="text-sm text-blue-700 mt-0.5">
+                    <p className="text-sm text-primary-700 mt-0.5">
                       {contract.document_file_name}
                       {contract.properties?.address && ` — ${contract.properties.address}`}
                     </p>
                   </div>
                   <Link
                     href={`/sign/${contract.signing_token}`}
-                    className="inline-flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors flex-shrink-0 ml-4"
+                    className="inline-flex items-center px-4 py-2 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors flex-shrink-0 ml-4"
                   >
                     Review & Sign
                   </Link>
@@ -119,8 +119,8 @@ export default async function ApplicantDashboard() {
                 <div className="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-4">
                   Lease Signed
                 </div>
-                <p className="text-gray-600 mb-2">Your lease has been signed</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-slate-600 mb-2">Your lease has been signed</p>
+                <p className="text-sm text-slate-500">
                   Signed on {new Date(signedContracts[0].signed_at).toLocaleDateString('en-US', {
                     year: 'numeric',
                     month: 'long',
@@ -130,11 +130,11 @@ export default async function ApplicantDashboard() {
               </>
             ) : pendingContracts.length > 0 ? (
               <>
-                <div className="inline-block px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium mb-4">
+                <div className="inline-block px-4 py-2 bg-primary-100 text-primary-800 rounded-full text-sm font-medium mb-4">
                   Ready to Sign
                 </div>
-                <p className="text-gray-600 mb-2">Your lease agreement is ready for signing</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-slate-600 mb-2">Your lease agreement is ready for signing</p>
+                <p className="text-sm text-slate-500">
                   Please review and sign your lease above
                 </p>
               </>
@@ -143,8 +143,8 @@ export default async function ApplicantDashboard() {
                 <div className="inline-block px-4 py-2 bg-green-100 text-green-800 rounded-full text-sm font-medium mb-4">
                   Application Approved
                 </div>
-                <p className="text-gray-600 mb-2">Your application has been approved</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-slate-600 mb-2">Your application has been approved</p>
+                <p className="text-sm text-slate-500">
                   {draftContracts.length > 0
                     ? 'Your lease agreement is being prepared and will be ready for signing soon'
                     : 'Your lease agreement will be prepared shortly'}
@@ -155,8 +155,8 @@ export default async function ApplicantDashboard() {
                 <div className="inline-block px-4 py-2 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium mb-4">
                   {opportunityStageDisplay || 'Pending Review'}
                 </div>
-                <p className="text-gray-600 mb-2">Your application is being reviewed</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-slate-600 mb-2">Your application is being reviewed</p>
+                <p className="text-sm text-slate-500">
                   You will be notified once your application has been processed
                 </p>
               </>
@@ -172,9 +172,9 @@ export default async function ApplicantDashboard() {
         </CardHeader>
         <CardContent>
           <div className="space-y-1 text-sm">
-            <p className="text-gray-900">{profile.full_name}</p>
-            <p className="text-gray-600">{profile.email}</p>
-            {profile.phone && <p className="text-gray-600">{profile.phone}</p>}
+            <p className="text-slate-900">{profile.full_name}</p>
+            <p className="text-slate-600">{profile.email}</p>
+            {profile.phone && <p className="text-slate-600">{profile.phone}</p>}
           </div>
         </CardContent>
       </Card>
@@ -189,7 +189,7 @@ export default async function ApplicantDashboard() {
             <div className="flex items-start">
               <div className="flex-shrink-0">
                 <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-medium ${
-                  isApproved || hasContracts ? 'bg-green-100 text-green-600' : 'bg-blue-100 text-blue-600'
+                  isApproved || hasContracts ? 'bg-green-100 text-green-600' : 'bg-primary-100 text-primary-600'
                 }`}>
                   {isApproved || hasContracts ? (
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
@@ -199,8 +199,8 @@ export default async function ApplicantDashboard() {
                 </div>
               </div>
               <div className="ml-4">
-                <h4 className="text-sm font-medium text-gray-900">Application Review</h4>
-                <p className="text-sm text-gray-600">
+                <h4 className="text-sm font-medium text-slate-900">Application Review</h4>
+                <p className="text-sm text-slate-600">
                   {isApproved || hasContracts
                     ? 'Your application has been approved'
                     : 'Your application is currently being reviewed by the property manager'}
@@ -214,8 +214,8 @@ export default async function ApplicantDashboard() {
                   signedContracts.length > 0
                     ? 'bg-green-100 text-green-600'
                     : pendingContracts.length > 0 || (isApproved && hasContracts)
-                    ? 'bg-blue-100 text-blue-600'
-                    : 'bg-gray-100 text-gray-600'
+                    ? 'bg-primary-100 text-primary-600'
+                    : 'bg-slate-100 text-slate-600'
                 }`}>
                   {signedContracts.length > 0 ? (
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor">
@@ -225,8 +225,8 @@ export default async function ApplicantDashboard() {
                 </div>
               </div>
               <div className={`ml-4 ${!isApproved && !hasContracts ? 'opacity-50' : ''}`}>
-                <h4 className="text-sm font-medium text-gray-900">Lease Signing</h4>
-                <p className="text-sm text-gray-600">
+                <h4 className="text-sm font-medium text-slate-900">Lease Signing</h4>
+                <p className="text-sm text-slate-600">
                   {signedContracts.length > 0
                     ? 'Lease signed successfully'
                     : pendingContracts.length > 0
@@ -243,14 +243,14 @@ export default async function ApplicantDashboard() {
             <div className="flex items-start">
               <div className="flex-shrink-0">
                 <div className={`flex items-center justify-center h-8 w-8 rounded-full text-sm font-medium ${
-                  signedContracts.length > 0 ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-600'
+                  signedContracts.length > 0 ? 'bg-primary-100 text-primary-600' : 'bg-slate-100 text-slate-600'
                 }`}>
                   3
                 </div>
               </div>
               <div className={`ml-4 ${signedContracts.length === 0 ? 'opacity-50' : ''}`}>
-                <h4 className="text-sm font-medium text-gray-900">Move-In</h4>
-                <p className="text-sm text-gray-600">
+                <h4 className="text-sm font-medium text-slate-900">Move-In</h4>
+                <p className="text-sm text-slate-600">
                   Complete move-in process and receive keys
                 </p>
               </div>
@@ -265,7 +265,7 @@ export default async function ApplicantDashboard() {
           <CardTitle>Need Help?</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-slate-600">
             Have questions about your application? Contact your property manager for assistance.
           </p>
         </CardContent>

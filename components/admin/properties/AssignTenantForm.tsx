@@ -83,14 +83,14 @@ export default function AssignTenantForm({ propertyId, availableUsers }: AssignT
       {success && <Alert variant="success">{success}</Alert>}
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
+        <label className="block text-sm font-medium text-slate-700 mb-1">
           Select Tenant <span className="text-red-500">*</span>
         </label>
         <select
           value={userId}
           onChange={(e) => setUserId(e.target.value)}
           required
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
         >
           <option value="">Choose a tenant...</option>
           {availableUsers.map((user) => (
@@ -99,7 +99,7 @@ export default function AssignTenantForm({ propertyId, availableUsers }: AssignT
             </option>
           ))}
         </select>
-        <p className="mt-1 text-xs text-gray-500">
+        <p className="mt-1 text-xs text-slate-500">
           Only users with "Tenant" role are shown
         </p>
       </div>

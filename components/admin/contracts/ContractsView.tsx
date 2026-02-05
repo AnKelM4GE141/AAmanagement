@@ -8,8 +8,8 @@ import ContractDetailModal from './ContractDetailModal'
 import type { ContractWithDetails, ContractStatus } from '@/lib/types/contract'
 
 const statusBadge: Record<ContractStatus, { bg: string; text: string; label: string }> = {
-  draft: { bg: 'bg-gray-100', text: 'text-gray-800', label: 'Draft' },
-  sent: { bg: 'bg-blue-100', text: 'text-blue-800', label: 'Sent' },
+  draft: { bg: 'bg-slate-100', text: 'text-slate-800', label: 'Draft' },
+  sent: { bg: 'bg-primary-100', text: 'text-primary-800', label: 'Sent' },
   viewed: { bg: 'bg-yellow-100', text: 'text-yellow-800', label: 'Viewed' },
   signed: { bg: 'bg-green-100', text: 'text-green-800', label: 'Signed' },
 }
@@ -103,7 +103,7 @@ export default function ContractsView() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600" />
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600" />
       </div>
     )
   }
@@ -114,12 +114,12 @@ export default function ContractsView() {
 
       {/* Templates Section */}
       <div>
-        <h2 className="text-lg font-semibold text-gray-900 mb-3">Templates</h2>
+        <h2 className="text-lg font-semibold text-slate-900 mb-3">Templates</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {templates.map((template) => (
             <div
               key={template.fileName}
-              className="bg-white rounded-lg border border-gray-200 p-4 hover:border-blue-300 hover:shadow-sm transition-all"
+              className="bg-white rounded-lg border border-slate-200 p-4 hover:border-primary-300 hover:shadow-sm transition-all"
             >
               <div className="flex items-start gap-3">
                 <div className="flex-shrink-0 w-10 h-10 bg-red-50 rounded-lg flex items-center justify-center">
@@ -128,8 +128,8 @@ export default function ContractsView() {
                   </svg>
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-sm font-medium text-gray-900">{template.name}</h3>
-                  <p className="text-xs text-gray-500 mt-0.5">{template.description}</p>
+                  <h3 className="text-sm font-medium text-slate-900">{template.name}</h3>
+                  <p className="text-xs text-slate-500 mt-0.5">{template.description}</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 mt-3">
@@ -137,14 +137,14 @@ export default function ContractsView() {
                   href={template.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs text-gray-600 hover:text-gray-800 font-medium"
+                  className="text-xs text-slate-600 hover:text-slate-800 font-medium"
                 >
                   Preview
                 </a>
-                <span className="text-gray-300">|</span>
+                <span className="text-slate-300">|</span>
                 <button
                   onClick={() => handleUseTemplate(template)}
-                  className="text-xs text-blue-600 hover:text-blue-800 font-medium"
+                  className="text-xs text-primary-600 hover:text-primary-800 font-medium"
                 >
                   Use Template
                 </button>
@@ -158,7 +158,7 @@ export default function ContractsView() {
       <div>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
           <div className="flex items-center gap-3">
-            <h2 className="text-lg font-semibold text-gray-900">Contracts</h2>
+            <h2 className="text-lg font-semibold text-slate-900">Contracts</h2>
             <div className="flex gap-1">
               {(['all', 'draft', 'sent', 'viewed', 'signed'] as const).map((s) => (
                 <button
@@ -166,8 +166,8 @@ export default function ContractsView() {
                   onClick={() => setFilter(s)}
                   className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                     filter === s
-                      ? 'bg-blue-100 text-blue-700'
-                      : 'text-gray-600 hover:bg-gray-100'
+                      ? 'bg-primary-100 text-primary-700'
+                      : 'text-slate-600 hover:bg-slate-100'
                   }`}
                 >
                   {s === 'all' ? 'All' : statusBadge[s].label}
@@ -180,38 +180,38 @@ export default function ContractsView() {
 
         {/* Table */}
         {filtered.length === 0 ? (
-          <div className="bg-white rounded-lg border border-gray-200 p-8 text-center">
-            <p className="text-gray-500">
+          <div className="bg-white rounded-lg border border-slate-200 p-8 text-center">
+            <p className="text-slate-500">
               {contracts.length === 0 ? 'No contracts yet. Create one to get started.' : 'No contracts match this filter.'}
             </p>
           </div>
         ) : (
-          <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
+          <div className="bg-white rounded-lg border border-slate-200 overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
-                <thead className="bg-gray-50">
+              <table className="min-w-full divide-y divide-slate-200">
+                <thead className="bg-slate-50">
                   <tr>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Applicant</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Property</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Document</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                    <th className="px-4 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Applicant</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Property</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Document</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Status</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase">Date</th>
+                    <th className="px-4 py-3 text-right text-xs font-medium text-slate-500 uppercase">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y divide-slate-200">
                   {filtered.map((contract) => {
                     const badge = statusBadge[contract.status]
                     return (
-                      <tr key={contract.id} className="hover:bg-gray-50">
+                      <tr key={contract.id} className="hover:bg-slate-50">
                         <td className="px-4 py-3">
-                          <div className="text-sm font-medium text-gray-900">{contract.applicant.full_name}</div>
-                          <div className="text-xs text-gray-500">{contract.applicant.email}</div>
+                          <div className="text-sm font-medium text-slate-900">{contract.applicant.full_name}</div>
+                          <div className="text-xs text-slate-500">{contract.applicant.email}</div>
                         </td>
-                        <td className="px-4 py-3 text-sm text-gray-600">
+                        <td className="px-4 py-3 text-sm text-slate-600">
                           {contract.property?.address || '—'}
                         </td>
-                        <td className="px-4 py-3 text-sm text-gray-600">
+                        <td className="px-4 py-3 text-sm text-slate-600">
                           {contract.document_file_name}
                         </td>
                         <td className="px-4 py-3">
@@ -219,7 +219,7 @@ export default function ContractsView() {
                             {badge.label}
                           </span>
                         </td>
-                        <td className="px-4 py-3 text-sm text-gray-500">
+                        <td className="px-4 py-3 text-sm text-slate-500">
                           {contract.signed_at
                             ? new Date(contract.signed_at).toLocaleDateString()
                             : contract.sent_at
@@ -230,7 +230,7 @@ export default function ContractsView() {
                           <div className="flex items-center justify-end gap-2">
                             <button
                               onClick={() => setSelectedContract(contract)}
-                              className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+                              className="text-sm text-primary-600 hover:text-primary-800 font-medium"
                             >
                               View
                             </button>
@@ -245,7 +245,7 @@ export default function ContractsView() {
                             {contract.status !== 'draft' && (
                               <button
                                 onClick={() => copySigningLink(contract)}
-                                className="text-sm text-gray-600 hover:text-gray-800 font-medium"
+                                className="text-sm text-slate-600 hover:text-slate-800 font-medium"
                               >
                                 {copiedId === contract.id ? 'Copied!' : 'Copy Link'}
                               </button>

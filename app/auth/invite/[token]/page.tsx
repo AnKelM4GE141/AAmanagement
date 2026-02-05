@@ -157,10 +157,10 @@ export default function AcceptInvitePage() {
 
   if (isCheckingInvite) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50">
+      <div className="flex min-h-screen items-center justify-center bg-slate-50">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Verifying invitation...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
+          <p className="mt-4 text-slate-600">Verifying invitation...</p>
         </div>
       </div>
     )
@@ -168,7 +168,7 @@ export default function AcceptInvitePage() {
 
   if (error && !invitation) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4">
+      <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
         <div className="w-full max-w-md">
           <Card>
             <Alert variant="error">{error}</Alert>
@@ -184,11 +184,11 @@ export default function AcceptInvitePage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gray-50 px-4 py-12">
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-12">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Welcome to AA Portal</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-slate-900">Welcome to AA Portal</h1>
+          <p className="text-slate-600 mt-2">
             You've been invited as a <span className="font-semibold">{invitation?.role}</span>
           </p>
         </div>

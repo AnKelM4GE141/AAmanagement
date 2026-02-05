@@ -78,7 +78,7 @@ export default function UserRoleSelect({ userId, currentRole, userName, isOwner,
 
   const roleColors = {
     admin: 'bg-purple-100 text-purple-800 border-purple-200',
-    tenant: 'bg-blue-100 text-blue-800 border-blue-200',
+    tenant: 'bg-primary-100 text-primary-800 border-primary-200',
     applicant: 'bg-green-100 text-green-800 border-green-200',
   }
 
@@ -87,7 +87,7 @@ export default function UserRoleSelect({ userId, currentRole, userName, isOwner,
       value={role}
       onChange={(e) => handleRoleChange(e.target.value)}
       disabled={isLoading}
-      className={`px-2.5 py-1 rounded-full text-xs font-medium border cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed ${roleColors[role]}`}
+      className={`px-2.5 py-1 rounded-full text-xs font-medium border cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary-500 disabled:opacity-50 disabled:cursor-not-allowed ${roleColors[role]}`}
     >
       <option value="admin">Admin</option>
       <option value="tenant">Tenant</option>

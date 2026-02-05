@@ -89,11 +89,11 @@ export default function PaymentStatusCard({
       message: 'Your rent payment is past due',
     },
     processing: {
-      bgColor: 'bg-blue-50',
-      borderColor: 'border-blue-200',
-      textColor: 'text-blue-800',
-      badgeBg: 'bg-blue-100',
-      badgeText: 'text-blue-800',
+      bgColor: 'bg-primary-50',
+      borderColor: 'border-primary-200',
+      textColor: 'text-primary-800',
+      badgeBg: 'bg-primary-100',
+      badgeText: 'text-primary-800',
       icon: (
         <svg
           className="w-6 h-6 animate-spin"
@@ -226,7 +226,7 @@ export default function PaymentStatusCard({
       )}
 
       {status === 'processing' && (
-        <div className="mt-4 text-sm text-blue-700">
+        <div className="mt-4 text-sm text-primary-700">
           ⏳ ACH payments typically take 5-7 business days to complete.
         </div>
       )}

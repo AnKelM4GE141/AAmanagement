@@ -12,7 +12,7 @@ export default async function AdminLayout({
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-slate-50">
         {/* Sidebar */}
         <AdminSidebar
           userFullName={profile.full_name}

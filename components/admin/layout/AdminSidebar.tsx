@@ -104,13 +104,13 @@ export default function AdminSidebar({
   const SidebarContent = ({ collapsed = false }: { collapsed?: boolean }) => (
     <>
       {/* Logo/Business Name */}
-      <div className="flex h-16 items-center border-b border-gray-200 px-4">
+      <div className="flex h-16 items-center border-b border-slate-200/60 px-4">
         {collapsed ? (
           <div className="flex w-full justify-center">
             {logoUrl ? (
               <img src={logoUrl} alt={businessName} className="h-8 w-8 object-contain" />
             ) : (
-              <span className="text-xl font-bold text-gray-900">
+              <span className="text-xl font-bold text-slate-900">
                 {businessName.charAt(0)}
               </span>
             )}
@@ -120,7 +120,7 @@ export default function AdminSidebar({
             {logoUrl ? (
               <img src={logoUrl} alt={businessName} className="h-8 w-auto" />
             ) : (
-              <span className="text-xl font-bold text-gray-900 truncate">{businessName}</span>
+              <span className="text-xl font-bold text-slate-900 truncate">{businessName}</span>
             )}
           </div>
         )}
@@ -135,18 +135,18 @@ export default function AdminSidebar({
               key={item.name}
               href={item.href}
               title={collapsed ? item.name : undefined}
-              className={`group flex items-center rounded-lg text-sm font-medium transition-colors ${
+              className={`group flex items-center rounded-xl text-sm font-medium transition-all duration-200 ${
                 collapsed ? 'justify-center px-2 py-2.5' : 'px-3 py-2.5'
               } ${
                 active
-                  ? 'bg-blue-50 text-blue-700'
-                  : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-primary-50 text-primary-700 border-l-2 border-primary-600'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
               }`}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <item.icon
-                className={`h-5 w-5 flex-shrink-0 ${
-                  active ? 'text-blue-700' : 'text-gray-400'
+                className={`h-5 w-5 flex-shrink-0 transition-colors ${
+                  active ? 'text-primary-600' : 'text-slate-400 group-hover:text-slate-600'
                 } ${collapsed ? '' : 'mr-3'}`}
               />
               {!collapsed && (
@@ -170,10 +170,10 @@ export default function AdminSidebar({
       </nav>
 
       {/* Collapse toggle (desktop only) */}
-      <div className="hidden lg:block border-t border-gray-200 px-2 py-2">
+      <div className="hidden lg:block border-t border-slate-200/60 px-2 py-2">
         <button
           onClick={toggle}
-          className="flex w-full items-center justify-center rounded-lg px-2 py-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+          className="flex w-full items-center justify-center rounded-xl px-2 py-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-all duration-200"
           title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
         >
           {collapsed ? (
@@ -185,15 +185,15 @@ export default function AdminSidebar({
       </div>
 
       {/* User Menu with Popover */}
-      <div className="relative border-t border-gray-200" ref={profileRef}>
+      <div className="relative border-t border-slate-200/60" ref={profileRef}>
         <button
           onClick={() => setIsProfileOpen(!isProfileOpen)}
-          className={`w-full px-4 py-3 flex items-center hover:bg-gray-50 transition-colors cursor-pointer ${
+          className={`w-full px-4 py-3 flex items-center hover:bg-slate-50 transition-all duration-200 cursor-pointer ${
             collapsed ? 'justify-center' : ''
           }`}
         >
           <div className="flex-shrink-0">
-            <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-medium text-sm overflow-hidden">
+            <div className="h-8 w-8 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-medium text-sm overflow-hidden">
               {initialAvatarUrl ? (
                 <img src={initialAvatarUrl} alt={userFullName} className="h-full w-full object-cover" />
               ) : (
@@ -203,8 +203,8 @@ export default function AdminSidebar({
           </div>
           {!collapsed && (
             <div className="ml-3 flex-1 min-w-0 text-left">
-              <p className="text-sm font-medium text-gray-900 truncate">{userFullName}</p>
-              <p className="text-xs text-gray-500 truncate">{userEmail}</p>
+              <p className="text-sm font-medium text-slate-900 truncate">{userFullName}</p>
+              <p className="text-xs text-slate-500 truncate">{userEmail}</p>
             </div>
           )}
         </button>
@@ -212,16 +212,16 @@ export default function AdminSidebar({
         {/* Profile Popover */}
         {isProfileOpen && (
           <div
-            className={`absolute z-50 mb-1 bg-white rounded-lg shadow-lg border border-gray-200 py-1 ${
+            className={`absolute z-50 mb-1 bg-white rounded-xl shadow-soft-lg border border-slate-200/60 py-1 animate-scale-in ${
               collapsed
                 ? 'bottom-0 left-full ml-2 w-64'
                 : 'bottom-full left-0 right-0 mx-2'
             }`}
           >
             {/* User info header */}
-            <div className="px-4 py-3 border-b border-gray-100">
+            <div className="px-4 py-3 border-b border-slate-100">
               <div className="flex items-center">
-                <div className="h-10 w-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-medium overflow-hidden">
+                <div className="h-10 w-10 rounded-full bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center text-white font-medium overflow-hidden">
                   {initialAvatarUrl ? (
                     <img src={initialAvatarUrl} alt={userFullName} className="h-full w-full object-cover" />
                   ) : (
@@ -229,8 +229,8 @@ export default function AdminSidebar({
                   )}
                 </div>
                 <div className="ml-3 min-w-0">
-                  <p className="text-sm font-medium text-gray-900 truncate">{userFullName}</p>
-                  <p className="text-xs text-gray-500 truncate">{userEmail}</p>
+                  <p className="text-sm font-medium text-slate-900 truncate">{userFullName}</p>
+                  <p className="text-xs text-slate-500 truncate">{userEmail}</p>
                 </div>
               </div>
               <span className="mt-2 inline-block px-2 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
@@ -246,15 +246,15 @@ export default function AdminSidebar({
                   setIsProfileOpen(false)
                   setIsMobileMenuOpen(false)
                 }}
-                className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition-colors"
               >
-                <UserCircleIcon className="h-4 w-4 mr-3 text-gray-400" />
+                <UserCircleIcon className="h-4 w-4 mr-3 text-slate-400" />
                 Profile Settings
               </Link>
             </div>
 
             {/* Sign out */}
-            <div className="border-t border-gray-100 py-1">
+            <div className="border-t border-slate-100 py-1">
               <button
                 onClick={handleSignOut}
                 className="flex w-full items-center px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
@@ -274,7 +274,7 @@ export default function AdminSidebar({
       {/* Mobile menu button */}
       <button
         type="button"
-        className="lg:hidden fixed top-4 left-4 z-50 inline-flex items-center justify-center rounded-md p-2 text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+        className="lg:hidden fixed top-4 left-4 z-50 inline-flex items-center justify-center rounded-xl p-2 text-slate-700 hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary-500 bg-white/80 backdrop-blur-sm shadow-soft"
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         <span className="sr-only">Toggle sidebar</span>
@@ -287,7 +287,7 @@ export default function AdminSidebar({
 
       {/* Desktop sidebar */}
       <div
-        className={`hidden lg:flex lg:flex-col lg:fixed lg:inset-y-0 lg:left-0 bg-white border-r border-gray-200 transition-all duration-200 ${
+        className={`hidden lg:flex lg:flex-col lg:fixed lg:inset-y-0 lg:left-0 bg-white/80 backdrop-blur-xl border-r border-slate-200/60 transition-all duration-200 ${
           isCollapsed ? 'lg:w-16' : 'lg:w-60'
         }`}
       >
@@ -298,10 +298,10 @@ export default function AdminSidebar({
       {isMobileMenuOpen && (
         <div className="lg:hidden fixed inset-0 z-40 flex">
           <div
-            className="fixed inset-0 bg-gray-600 bg-opacity-75"
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm"
             onClick={() => setIsMobileMenuOpen(false)}
           />
-          <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white left-0">
+          <div className="relative flex w-full max-w-xs flex-1 flex-col bg-white left-0 animate-slide-in-left">
             <SidebarContent collapsed={false} />
           </div>
         </div>

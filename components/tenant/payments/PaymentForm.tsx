@@ -120,13 +120,13 @@ function CheckoutForm({
             />
           </svg>
         </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
+        <h3 className="text-lg font-semibold text-slate-900 mb-2">
           Payment Successful!
         </h3>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-slate-600">
           Your payment of ${amount.toFixed(2)} has been processed.
         </p>
-        <p className="text-xs text-gray-500 mt-2">
+        <p className="text-xs text-slate-500 mt-2">
           Redirecting to your dashboard...
         </p>
       </div>
@@ -138,16 +138,16 @@ function CheckoutForm({
       {error && <Alert variant="error">{error}</Alert>}
 
       {/* Payment Summary */}
-      <div className="bg-gray-50 p-4 rounded-lg space-y-2">
+      <div className="bg-slate-50 p-4 rounded-lg space-y-2">
         <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Property:</span>
-          <span className="font-medium text-gray-900">
+          <span className="text-slate-600">Property:</span>
+          <span className="font-medium text-slate-900">
             {propertyName || 'Your Property'}
           </span>
         </div>
         <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Monthly Rent:</span>
-          <span className="font-medium text-gray-900">
+          <span className="text-slate-600">Monthly Rent:</span>
+          <span className="font-medium text-slate-900">
             ${rentAmount.toFixed(2)}
           </span>
         </div>
@@ -159,10 +159,10 @@ function CheckoutForm({
             </span>
           </div>
         )}
-        <div className="pt-2 border-t border-gray-200">
+        <div className="pt-2 border-t border-slate-200">
           <div className="flex justify-between">
-            <span className="font-semibold text-gray-900">Total Due:</span>
-            <span className="font-bold text-lg text-gray-900">
+            <span className="font-semibold text-slate-900">Total Due:</span>
+            <span className="font-bold text-lg text-slate-900">
               ${amount.toFixed(2)}
             </span>
           </div>
@@ -171,18 +171,18 @@ function CheckoutForm({
 
       {/* Stripe Payment Element */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-slate-700 mb-2">
           Payment Method
         </label>
         <PaymentElement />
-        <p className="mt-2 text-xs text-gray-500">
+        <p className="mt-2 text-xs text-slate-500">
           Supports credit/debit cards and ACH bank transfers
         </p>
       </div>
 
       {/* Fee Information */}
-      <div className="bg-blue-50 p-3 rounded-lg">
-        <p className="text-xs text-blue-800">
+      <div className="bg-primary-50 p-3 rounded-lg">
+        <p className="text-xs text-primary-800">
           <strong>Payment Processing Fees:</strong>
           <br />
           • Credit/Debit Cards: 2.9% + $0.30
@@ -281,8 +281,8 @@ export default function PaymentForm(props: PaymentFormProps) {
   if (isLoading) {
     return (
       <div className="text-center py-8">
-        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-300 border-t-blue-600"></div>
-        <p className="mt-4 text-sm text-gray-600">Initializing payment...</p>
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-slate-300 border-t-blue-600"></div>
+        <p className="mt-4 text-sm text-slate-600">Initializing payment...</p>
       </div>
     )
   }

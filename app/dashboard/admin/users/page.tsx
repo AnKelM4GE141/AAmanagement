@@ -30,15 +30,15 @@ export default async function UsersPage() {
 
   const roleColors = {
     admin: 'bg-purple-100 text-purple-800',
-    tenant: 'bg-blue-100 text-blue-800',
+    tenant: 'bg-primary-100 text-primary-800',
     applicant: 'bg-green-100 text-green-800',
   }
 
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">User Management</h1>
-        <p className="text-gray-600 mt-1">Manage users and send invitations</p>
+        <h1 className="text-3xl font-bold text-slate-900">User Management</h1>
+        <p className="text-slate-600 mt-1">Manage users and send invitations</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -66,7 +66,7 @@ export default async function UsersPage() {
               )}
 
               {users && users.length === 0 && (
-                <p className="text-gray-600 text-sm">No users found</p>
+                <p className="text-slate-600 text-sm">No users found</p>
               )}
 
               {users && users.length > 0 && (
@@ -74,17 +74,17 @@ export default async function UsersPage() {
                   {users.map((user) => (
                     <div
                       key={user.id}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                      className="flex items-center justify-between p-4 bg-slate-50 rounded-lg"
                     >
                       <div className="flex-1">
                         <div className="flex items-center space-x-2">
-                          <h3 className="font-medium text-gray-900">
+                          <h3 className="font-medium text-slate-900">
                             {user.full_name}
                           </h3>
                         </div>
-                        <p className="text-sm text-gray-600">{user.email}</p>
+                        <p className="text-sm text-slate-600">{user.email}</p>
                         {user.phone && (
-                          <p className="text-sm text-gray-600">{user.phone}</p>
+                          <p className="text-sm text-slate-600">{user.phone}</p>
                         )}
                       </div>
                       <UserRoleSelect
@@ -112,7 +112,7 @@ export default async function UsersPage() {
               )}
 
               {invitations && invitations.length === 0 && (
-                <p className="text-gray-600 text-sm">No pending invitations</p>
+                <p className="text-slate-600 text-sm">No pending invitations</p>
               )}
 
               {invitations && invitations.length > 0 && (
@@ -127,8 +127,8 @@ export default async function UsersPage() {
                         className="flex items-center justify-between p-4 bg-yellow-50 rounded-lg"
                       >
                         <div className="flex-1">
-                          <h3 className="font-medium text-gray-900">{invite.email}</h3>
-                          <p className="text-sm text-gray-600">
+                          <h3 className="font-medium text-slate-900">{invite.email}</h3>
+                          <p className="text-sm text-slate-600">
                             {isExpired ? (
                               <span className="text-red-600">Expired</span>
                             ) : (

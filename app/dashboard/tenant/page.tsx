@@ -108,21 +108,21 @@ export default async function TenantDashboard() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fade-in-up">
       {/* Welcome Section */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl font-bold text-slate-900">
           Welcome, {profile.full_name}
         </h1>
-        <p className="text-gray-600 mt-1">Tenant Portal</p>
+        <p className="text-slate-600 mt-1">Tenant Portal</p>
       </div>
 
       {!tenantData ? (
         <Card>
           <CardContent className="pt-6">
             <div className="text-center py-8">
-              <p className="text-sm text-gray-600">Not assigned to a property yet</p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-sm text-slate-600">Not assigned to a property yet</p>
+              <p className="text-xs text-slate-500 mt-1">
                 Contact your property manager for assistance
               </p>
             </div>
@@ -164,18 +164,18 @@ export default async function TenantDashboard() {
                         />
                       </svg>
                     </div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-slate-900">
                       Paid for this month
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-slate-500 mt-1">
                       Thank you for your payment!
                     </p>
                   </div>
                 ) : paymentStatus === 'processing' ? (
                   <div className="text-center py-4">
-                    <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-3">
+                    <div className="mx-auto w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mb-3">
                       <svg
-                        className="w-6 h-6 text-blue-600 animate-spin"
+                        className="w-6 h-6 text-primary-600 animate-spin"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -188,28 +188,28 @@ export default async function TenantDashboard() {
                         />
                       </svg>
                     </div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-slate-900">
                       Payment Processing
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-slate-500 mt-1">
                       ACH payments take 5-7 business days
                     </p>
                   </div>
                 ) : (
                   <>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-slate-600 mb-4">
                       Pay your rent online securely with card or ACH
                     </p>
                     <Link
                       href="/dashboard/tenant/payments"
-                      className="block w-full text-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                      className="block w-full text-center px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
                     >
                       {paymentStatus === 'overdue'
                         ? 'Pay Now - Overdue'
                         : `Pay $${paymentAmount.toFixed(2)}`}
                     </Link>
                     {!isEnrolledInAutopay && (
-                      <p className="text-xs text-center text-gray-500 mt-2">
+                      <p className="text-xs text-center text-slate-500 mt-2">
                         💡 Enroll in autopay and save ${autopayDiscount || 25}/month
                       </p>
                     )}
@@ -242,10 +242,10 @@ export default async function TenantDashboard() {
                         />
                       </svg>
                     </div>
-                    <p className="text-sm font-medium text-gray-900">
+                    <p className="text-sm font-medium text-slate-900">
                       You're saving ${autopayDiscount}/month
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-slate-500 mt-1">
                       Automatic payments on the 1st
                     </p>
                     <Link
@@ -257,7 +257,7 @@ export default async function TenantDashboard() {
                   </div>
                 ) : (
                   <>
-                    <p className="text-gray-600 mb-4">
+                    <p className="text-slate-600 mb-4">
                       Save ${autopayDiscount || 25}/month with automatic payments
                     </p>
                     <Link
@@ -266,7 +266,7 @@ export default async function TenantDashboard() {
                     >
                       Enroll in Autopay
                     </Link>
-                    <p className="text-xs text-center text-gray-500 mt-2">
+                    <p className="text-xs text-center text-slate-500 mt-2">
                       Never miss a payment, save money
                     </p>
                   </>
@@ -283,7 +283,7 @@ export default async function TenantDashboard() {
                   <CardTitle>Recent Payments</CardTitle>
                   <Link
                     href="/dashboard/tenant/payments"
-                    className="text-sm text-blue-600 hover:text-blue-700"
+                    className="text-sm text-primary-600 hover:text-primary-700"
                   >
                     View all →
                   </Link>
@@ -303,24 +303,24 @@ export default async function TenantDashboard() {
               </CardHeader>
               <CardContent>
                 {tenantData.property && (
-                  <div className="mb-4 pb-4 border-b border-gray-200">
-                    <h4 className="text-sm font-semibold text-gray-900 mb-1">
+                  <div className="mb-4 pb-4 border-b border-slate-200">
+                    <h4 className="text-sm font-semibold text-slate-900 mb-1">
                       {tenantData.property.name || 'Your Property'}
                     </h4>
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-slate-600">
                       {tenantData.property.address}
                     </p>
                   </div>
                 )}
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Unit:</span>
+                    <span className="text-slate-600">Unit:</span>
                     <span className="font-medium">
                       {tenantData.unit_number || 'Not specified'}
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Lease Start:</span>
+                    <span className="text-slate-600">Lease Start:</span>
                     <span className="font-medium">
                       {tenantData.lease_start
                         ? new Date(tenantData.lease_start).toLocaleDateString()
@@ -328,7 +328,7 @@ export default async function TenantDashboard() {
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Lease End:</span>
+                    <span className="text-slate-600">Lease End:</span>
                     <span className="font-medium">
                       {tenantData.lease_end
                         ? new Date(tenantData.lease_end).toLocaleDateString()
@@ -336,7 +336,7 @@ export default async function TenantDashboard() {
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Base Rent:</span>
+                    <span className="text-slate-600">Base Rent:</span>
                     <span className="font-medium text-lg">
                       {tenantData.rent_amount
                         ? `$${tenantData.rent_amount.toLocaleString()}`
@@ -353,7 +353,7 @@ export default async function TenantDashboard() {
                   )}
                   {tenantData.security_deposit && (
                     <div className="flex justify-between">
-                      <span className="text-gray-600">Security Deposit:</span>
+                      <span className="text-slate-600">Security Deposit:</span>
                       <span className="font-medium">
                         ${tenantData.security_deposit.toLocaleString()}
                       </span>
@@ -368,8 +368,8 @@ export default async function TenantDashboard() {
                 <CardTitle>Maintenance Request</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-4">Submit a maintenance ticket</p>
-                <button className="w-full px-4 py-2 bg-gray-200 text-gray-500 rounded-lg cursor-not-allowed">
+                <p className="text-slate-600 mb-4">Submit a maintenance ticket</p>
+                <button className="w-full px-4 py-2 bg-slate-200 text-slate-500 rounded-lg cursor-not-allowed">
                   Coming in Phase 4
                 </button>
               </CardContent>

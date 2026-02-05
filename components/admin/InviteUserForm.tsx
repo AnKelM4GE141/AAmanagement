@@ -106,20 +106,20 @@ export default function InviteUserForm({ onSuccess }: InviteUserFormProps) {
         />
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-slate-700 mb-1">
             Role
           </label>
           <select
             value={role}
             onChange={(e) => setRole(e.target.value as 'admin' | 'tenant' | 'applicant')}
-            className="w-full px-3 py-2 border border-gray-300 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            className="w-full px-3 py-2 border border-slate-300 rounded-lg text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             required
           >
             <option value="tenant">Tenant</option>
             <option value="applicant">Applicant</option>
             <option value="admin">Admin</option>
           </select>
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-1 text-sm text-slate-500">
             {role === 'admin' && 'Full access to manage users and properties'}
             {role === 'tenant' && 'Access to tenant portal for payments and maintenance'}
             {role === 'applicant' && 'Limited access to view application status'}

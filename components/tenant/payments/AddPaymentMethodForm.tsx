@@ -96,11 +96,11 @@ function PaymentMethodForm({ onSuccess, onCancel }: AddPaymentMethodFormProps) {
           id="setAsDefault"
           checked={setAsDefault}
           onChange={(e) => setSetAsDefault(e.target.checked)}
-          className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+          className="h-4 w-4 text-primary-600 focus:ring-primary-500 border-slate-300 rounded"
         />
         <label
           htmlFor="setAsDefault"
-          className="ml-2 block text-sm text-gray-900"
+          className="ml-2 block text-sm text-slate-900"
         >
           Set as default payment method
         </label>
@@ -136,11 +136,11 @@ export default function AddPaymentMethodForm({
 
   return (
     <div className="space-y-4">
-      <div className="border-b border-gray-200 pb-4">
-        <h3 className="text-lg font-medium text-gray-900">
+      <div className="border-b border-slate-200 pb-4">
+        <h3 className="text-lg font-medium text-slate-900">
           Add Payment Method
         </h3>
-        <p className="mt-1 text-sm text-gray-600">
+        <p className="mt-1 text-sm text-slate-600">
           Add a card or bank account for future payments
         </p>
       </div>

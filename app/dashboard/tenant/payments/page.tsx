@@ -99,8 +99,8 @@ export default function TenantPaymentsPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-300 border-t-blue-600"></div>
-          <p className="mt-4 text-sm text-gray-600">Loading...</p>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-slate-300 border-t-blue-600"></div>
+          <p className="mt-4 text-sm text-slate-600">Loading...</p>
         </div>
       </div>
     )
@@ -110,7 +110,7 @@ export default function TenantPaymentsPage() {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">Payments</h1>
+          <h1 className="text-3xl font-bold text-slate-900">Payments</h1>
           <Button variant="secondary" onClick={() => router.back()}>
             ← Back
           </Button>
@@ -124,7 +124,7 @@ export default function TenantPaymentsPage() {
     return (
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-gray-900">Payments</h1>
+          <h1 className="text-3xl font-bold text-slate-900">Payments</h1>
           <Button variant="secondary" onClick={() => router.back()}>
             ← Back
           </Button>
@@ -132,10 +132,10 @@ export default function TenantPaymentsPage() {
         <Card>
           <CardContent className="py-12">
             <div className="text-center">
-              <p className="text-gray-600">
+              <p className="text-slate-600">
                 You are not assigned to a property yet
               </p>
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-slate-500 mt-2">
                 Contact your property manager for assistance
               </p>
             </div>
@@ -150,8 +150,8 @@ export default function TenantPaymentsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Payments</h1>
-          <p className="text-gray-600 mt-1">Manage your rent payments</p>
+          <h1 className="text-3xl font-bold text-slate-900">Payments</h1>
+          <p className="text-slate-600 mt-1">Manage your rent payments</p>
         </div>
         <Button variant="secondary" onClick={() => router.back()}>
           ← Back to Dashboard
@@ -163,11 +163,11 @@ export default function TenantPaymentsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-sm text-gray-600 mb-1">Current Month</p>
-              <p className="text-3xl font-bold text-gray-900">
+              <p className="text-sm text-slate-600 mb-1">Current Month</p>
+              <p className="text-3xl font-bold text-slate-900">
                 ${paymentAmount.toFixed(2)}
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 {paymentStatus === 'paid' ? 'Paid' : 'Due'}
               </p>
             </div>
@@ -177,8 +177,8 @@ export default function TenantPaymentsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-sm text-gray-600 mb-1">Base Rent</p>
-              <p className="text-3xl font-bold text-gray-900">
+              <p className="text-sm text-slate-600 mb-1">Base Rent</p>
+              <p className="text-3xl font-bold text-slate-900">
                 ${rentAmount.toFixed(2)}
               </p>
               {isEnrolledInAutopay && (
@@ -193,15 +193,15 @@ export default function TenantPaymentsPage() {
         <Card>
           <CardContent className="pt-6">
             <div className="text-center">
-              <p className="text-sm text-gray-600 mb-1">Total Paid</p>
-              <p className="text-3xl font-bold text-gray-900">
+              <p className="text-sm text-slate-600 mb-1">Total Paid</p>
+              <p className="text-3xl font-bold text-slate-900">
                 $
                 {payments
                   .filter((p) => p.status === 'completed')
                   .reduce((sum, p) => sum + Number(p.amount), 0)
                   .toFixed(2)}
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 {payments.filter((p) => p.status === 'completed').length} payments
               </p>
             </div>
@@ -218,13 +218,13 @@ export default function TenantPaymentsPage() {
           <CardContent>
             {!showPaymentForm ? (
               <div className="text-center py-6">
-                <p className="text-gray-600 mb-6">
+                <p className="text-slate-600 mb-6">
                   Pay your rent securely with credit card or ACH bank transfer
                 </p>
                 <Button onClick={() => setShowPaymentForm(true)} size="lg">
                   Pay ${paymentAmount.toFixed(2)}
                 </Button>
-                <p className="text-xs text-gray-500 mt-4">
+                <p className="text-xs text-slate-500 mt-4">
                   Card: 2.9% + $0.30 fee • ACH: 0.8% fee (max $5.00)
                 </p>
               </div>

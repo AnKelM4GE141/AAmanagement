@@ -78,7 +78,7 @@ export default function TenantPaymentOverview() {
   if (isLoading) {
     return (
       <div className="flex justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
       </div>
     )
   }
@@ -89,9 +89,9 @@ export default function TenantPaymentOverview() {
 
   if (tenants.length === 0) {
     return (
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center">
+      <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-8 text-center">
         <svg
-          className="mx-auto h-12 w-12 text-gray-400"
+          className="mx-auto h-12 w-12 text-slate-400"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -103,7 +103,7 @@ export default function TenantPaymentOverview() {
             d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
           />
         </svg>
-        <p className="mt-4 text-sm text-gray-600">No active tenants with leases</p>
+        <p className="mt-4 text-sm text-slate-600">No active tenants with leases</p>
       </div>
     )
   }
@@ -112,26 +112,26 @@ export default function TenantPaymentOverview() {
     <div className="space-y-4">
       {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-          <div className="text-sm font-medium text-gray-600">Total Tenants</div>
-          <div className="mt-1 text-2xl font-bold text-gray-900">
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4">
+          <div className="text-sm font-medium text-slate-600">Total Tenants</div>
+          <div className="mt-1 text-2xl font-bold text-slate-900">
             {tenants.length}
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-          <div className="text-sm font-medium text-gray-600">Paid This Month</div>
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4">
+          <div className="text-sm font-medium text-slate-600">Paid This Month</div>
           <div className="mt-1 text-2xl font-bold text-green-600">
             {tenants.filter((t) => t.current_month_paid).length}
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-          <div className="text-sm font-medium text-gray-600">Autopay Enrolled</div>
-          <div className="mt-1 text-2xl font-bold text-blue-600">
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4">
+          <div className="text-sm font-medium text-slate-600">Autopay Enrolled</div>
+          <div className="mt-1 text-2xl font-bold text-primary-600">
             {tenants.filter((t) => t.is_autopay).length}
           </div>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-          <div className="text-sm font-medium text-gray-600">Overdue</div>
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200 p-4">
+          <div className="text-sm font-medium text-slate-600">Overdue</div>
           <div className="mt-1 text-2xl font-bold text-red-600">
             {tenants.filter((t) => t.is_overdue).length}
           </div>
@@ -139,19 +139,19 @@ export default function TenantPaymentOverview() {
       </div>
 
       {/* Tenant List */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-        <div className="divide-y divide-gray-200">
+      <div className="bg-white rounded-lg shadow-sm border border-slate-200 overflow-hidden">
+        <div className="divide-y divide-slate-200">
           {tenants.map((tenant) => (
-            <div key={tenant.id} className="p-6 hover:bg-gray-50 transition-colors">
+            <div key={tenant.id} className="p-6 hover:bg-slate-50 transition-colors">
               {/* Tenant Header */}
               <div className="flex items-start justify-between mb-4">
                 <div className="flex-1">
                   <div className="flex items-center space-x-3">
-                    <h3 className="text-lg font-medium text-gray-900">
+                    <h3 className="text-lg font-medium text-slate-900">
                       {tenant.full_name}
                     </h3>
                     {tenant.is_autopay && (
-                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary-100 text-primary-800">
                         Autopay
                       </span>
                     )}
@@ -169,11 +169,11 @@ export default function TenantPaymentOverview() {
                       </span>
                     )}
                   </div>
-                  <p className="mt-1 text-sm text-gray-600">
+                  <p className="mt-1 text-sm text-slate-600">
                     {tenant.property_address}
                     {tenant.unit_number && ` • Unit ${tenant.unit_number}`}
                   </p>
-                  <p className="text-xs text-gray-500 mt-0.5">{tenant.email}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">{tenant.email}</p>
 
                   {/* Payment Methods */}
                   <div className="mt-2 flex flex-wrap gap-2">
@@ -181,7 +181,7 @@ export default function TenantPaymentOverview() {
                       tenant.payment_methods.map((method) => (
                         <span
                           key={method.id}
-                          className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-gray-100 text-gray-800 border border-gray-300"
+                          className="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-800 border border-slate-300"
                         >
                           {method.type === 'ach' ? (
                             <>
@@ -201,7 +201,7 @@ export default function TenantPaymentOverview() {
                             </>
                           )}
                           {method.is_default && (
-                            <span className="ml-1 text-blue-600">★</span>
+                            <span className="ml-1 text-primary-600">★</span>
                           )}
                         </span>
                       ))
@@ -216,10 +216,10 @@ export default function TenantPaymentOverview() {
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-lg font-bold text-gray-900">
+                  <div className="text-lg font-bold text-slate-900">
                     {formatCurrency(tenant.rent_amount)}
                   </div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-slate-500">
                     Due: {formatDate(tenant.payment_due_date)}
                   </div>
                 </div>
@@ -227,20 +227,20 @@ export default function TenantPaymentOverview() {
 
               {/* Lease Progress Bar */}
               <div>
-                <div className="flex justify-between text-xs text-gray-600 mb-2">
+                <div className="flex justify-between text-xs text-slate-600 mb-2">
                   <span>Lease Progress</span>
                   <span>
                     {formatDate(tenant.lease_start)} - {formatDate(tenant.lease_end)}
                   </span>
                 </div>
                 <div className="relative">
-                  <div className="overflow-hidden h-4 text-xs flex rounded-full bg-gray-200">
+                  <div className="overflow-hidden h-4 text-xs flex rounded-full bg-slate-200">
                     <div
                       style={{ width: `${tenant.lease_progress_percent}%` }}
-                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+                      className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-gradient-to-r from-primary-500 to-primary-600 transition-all duration-500"
                     ></div>
                   </div>
-                  <div className="flex justify-between text-xs text-gray-500 mt-1">
+                  <div className="flex justify-between text-xs text-slate-500 mt-1">
                     <span>
                       {tenant.days_into_lease} days ({tenant.lease_progress_percent}%)
                     </span>

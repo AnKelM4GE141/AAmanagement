@@ -168,8 +168,8 @@ export default function AutopayEnrollment({
   if (isLoading) {
     return (
       <div className="text-center py-8">
-        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-300 border-t-blue-600"></div>
-        <p className="mt-2 text-sm text-gray-600">Loading...</p>
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-slate-300 border-t-blue-600"></div>
+        <p className="mt-2 text-sm text-slate-600">Loading...</p>
       </div>
     )
   }
@@ -211,8 +211,8 @@ export default function AutopayEnrollment({
 
           {enrollment.payment_method && (
             <div className="mb-4 p-4 bg-white rounded-lg border border-purple-200">
-              <p className="text-xs text-gray-600 mb-2">Payment Method</p>
-              <p className="text-sm font-medium text-gray-900">
+              <p className="text-xs text-slate-600 mb-2">Payment Method</p>
+              <p className="text-sm font-medium text-slate-900">
                 {getPaymentMethodLabel(enrollment.payment_method)}
               </p>
             </div>
@@ -273,21 +273,21 @@ export default function AutopayEnrollment({
       {error && <Alert variant="error">{error}</Alert>}
       {success && <Alert variant="success">{success}</Alert>}
 
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-        <h3 className="font-semibold text-blue-900 mb-2">
+      <div className="bg-primary-50 border border-primary-200 rounded-lg p-6">
+        <h3 className="font-semibold text-primary-900 mb-2">
           Enroll in Autopay & Save ${discountAmount.toFixed(2)}/Month
         </h3>
-        <p className="text-sm text-blue-700 mb-6">
+        <p className="text-sm text-primary-700 mb-6">
           Never miss a payment and save money! Your rent will be automatically charged
           on the 1st of each month.
         </p>
 
         {paymentMethods.length === 0 ? (
-          <div className="p-4 bg-white rounded-lg border border-blue-200 mb-4">
-            <p className="text-sm text-gray-600 mb-4">
+          <div className="p-4 bg-white rounded-lg border border-primary-200 mb-4">
+            <p className="text-sm text-slate-600 mb-4">
               You need to save a payment method before enrolling in autopay.
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-slate-500">
               Make a payment first to save your payment method, then return here to enroll
               in autopay.
             </p>
@@ -297,7 +297,7 @@ export default function AutopayEnrollment({
             <div>
               <label
                 htmlFor="payment-method"
-                className="block text-sm font-medium text-blue-900 mb-2"
+                className="block text-sm font-medium text-primary-900 mb-2"
               >
                 Select Payment Method
               </label>
@@ -305,7 +305,7 @@ export default function AutopayEnrollment({
                 id="payment-method"
                 value={selectedPaymentMethodId}
                 onChange={(e) => setSelectedPaymentMethodId(e.target.value)}
-                className="block w-full px-3 py-2 border border-blue-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="block w-full px-3 py-2 border border-primary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
                 disabled={isProcessing}
               >
                 {paymentMethods.map((pm) => (
@@ -315,16 +315,16 @@ export default function AutopayEnrollment({
                   </option>
                 ))}
               </select>
-              <p className="text-xs text-blue-600 mt-2">
+              <p className="text-xs text-primary-600 mt-2">
                 We recommend using ACH (bank account) for autopay to minimize fees
               </p>
             </div>
 
-            <div className="bg-white rounded-lg border border-blue-200 p-4">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">
+            <div className="bg-white rounded-lg border border-primary-200 p-4">
+              <h4 className="text-sm font-semibold text-slate-900 mb-2">
                 How Autopay Works
               </h4>
-              <ul className="text-xs text-gray-600 space-y-1">
+              <ul className="text-xs text-slate-600 space-y-1">
                 <li>• Automatic payment on the 1st of each month</li>
                 <li>
                   • Save ${discountAmount.toFixed(2)}/month (${(discountAmount * 12).toFixed(2)}/year!)

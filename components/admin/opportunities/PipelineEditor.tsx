@@ -17,8 +17,8 @@ interface PipelineEditorProps {
 }
 
 const COLORS = [
-  { value: 'gray', label: 'Gray', bg: 'bg-gray-100', text: 'text-gray-800' },
-  { value: 'blue', label: 'Blue', bg: 'bg-blue-100', text: 'text-blue-800' },
+  { value: 'gray', label: 'Gray', bg: 'bg-slate-100', text: 'text-slate-800' },
+  { value: 'blue', label: 'Blue', bg: 'bg-primary-100', text: 'text-primary-800' },
   { value: 'yellow', label: 'Yellow', bg: 'bg-yellow-100', text: 'text-yellow-800' },
   { value: 'green', label: 'Green', bg: 'bg-green-100', text: 'text-green-800' },
   { value: 'indigo', label: 'Indigo', bg: 'bg-indigo-100', text: 'text-indigo-800' },
@@ -181,26 +181,26 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
 
   if (isLoading) {
     return (
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
+      <div className="fixed inset-0 bg-slate-500 bg-opacity-75 flex items-center justify-center z-50">
         <div className="bg-white rounded-lg p-8">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600 mx-auto"></div>
         </div>
       </div>
     )
   }
 
   return (
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-slate-500 bg-opacity-75 flex items-center justify-center z-50 p-4">
       <div className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
-        <div className="px-6 py-4 border-b border-gray-200 sticky top-0 bg-white z-10">
+        <div className="px-6 py-4 border-b border-slate-200 sticky top-0 bg-white z-10">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-medium text-gray-900">Edit Pipeline</h2>
-              <p className="mt-1 text-sm text-gray-600">{pipelineName}</p>
+              <h2 className="text-lg font-medium text-slate-900">Edit Pipeline</h2>
+              <p className="mt-1 text-sm text-slate-600">{pipelineName}</p>
             </div>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-500"
+              className="text-slate-400 hover:text-slate-500"
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -213,15 +213,15 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
           {error && <Alert variant="error">{error}</Alert>}
 
           {/* Add New Stage */}
-          <div className="border border-dashed border-gray-300 rounded-lg p-4">
-            <h3 className="text-sm font-medium text-gray-900 mb-3">Add New Stage</h3>
+          <div className="border border-dashed border-slate-300 rounded-lg p-4">
+            <h3 className="text-sm font-medium text-slate-900 mb-3">Add New Stage</h3>
             <div className="flex flex-col sm:flex-row gap-3">
               <input
                 type="text"
                 value={newStageName}
                 onChange={(e) => setNewStageName(e.target.value)}
                 placeholder="Stage name..."
-                className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                className="flex-1 rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                 onKeyPress={(e) => {
                   if (e.key === 'Enter') handleAddStage()
                 }}
@@ -229,7 +229,7 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
               <select
                 value={newStageColor}
                 onChange={(e) => setNewStageColor(e.target.value)}
-                className="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                className="rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
               >
                 {COLORS.map((color) => (
                   <option key={color.value} value={color.value}>
@@ -245,12 +245,12 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
 
           {/* Stages List */}
           <div>
-            <h3 className="text-sm font-medium text-gray-900 mb-3">Pipeline Stages</h3>
+            <h3 className="text-sm font-medium text-slate-900 mb-3">Pipeline Stages</h3>
             <div className="space-y-2">
               {stages.map((stage, index) => (
                 <div
                   key={stage.id}
-                  className="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition-colors"
+                  className="border border-slate-200 rounded-lg p-4 hover:border-primary-300 transition-colors"
                 >
                   {editingStageId === stage.id ? (
                     <div className="flex flex-col sm:flex-row gap-3">
@@ -261,7 +261,7 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
                           e.target.value !== stage.name &&
                           handleUpdateStage(stage.id, { name: e.target.value })
                         }
-                        className="flex-1 rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        className="flex-1 rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                         autoFocus
                       />
                       <select
@@ -269,7 +269,7 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
                         onChange={(e) =>
                           handleUpdateStage(stage.id, { color: e.target.value })
                         }
-                        className="rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                        className="rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
                       >
                         {COLORS.map((color) => (
                           <option key={color.value} value={color.value}>
@@ -287,7 +287,7 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
                   ) : (
                     <div className="flex items-center justify-between">
                       <div className="flex items-center space-x-3">
-                        <span className="text-gray-400 text-sm font-medium w-8">
+                        <span className="text-slate-400 text-sm font-medium w-8">
                           {index + 1}.
                         </span>
                         <span
@@ -304,7 +304,7 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
                         <button
                           onClick={() => handleMoveStage(index, 'up')}
                           disabled={index === 0}
-                          className="p-1 text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                          className="p-1 text-slate-400 hover:text-slate-600 disabled:opacity-30"
                           title="Move up"
                         >
                           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -316,7 +316,7 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
                         <button
                           onClick={() => handleMoveStage(index, 'down')}
                           disabled={index === stages.length - 1}
-                          className="p-1 text-gray-400 hover:text-gray-600 disabled:opacity-30"
+                          className="p-1 text-slate-400 hover:text-slate-600 disabled:opacity-30"
                           title="Move down"
                         >
                           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -327,7 +327,7 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
                         {/* Edit */}
                         <button
                           onClick={() => setEditingStageId(stage.id)}
-                          className="p-1 text-gray-400 hover:text-blue-600"
+                          className="p-1 text-slate-400 hover:text-primary-600"
                           title="Edit stage"
                         >
                           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -338,7 +338,7 @@ export default function PipelineEditor({ pipelineId, onClose }: PipelineEditorPr
                         {/* Delete */}
                         <button
                           onClick={() => handleDeleteStage(stage.id)}
-                          className="p-1 text-gray-400 hover:text-red-600"
+                          className="p-1 text-slate-400 hover:text-red-600"
                           title="Delete stage"
                         >
                           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

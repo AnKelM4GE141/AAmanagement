@@ -57,7 +57,7 @@ export default function OpportunitiesView() {
   if (isLoading) {
     return (
       <div className="flex justify-center py-12">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
       </div>
     )
   }
@@ -71,8 +71,8 @@ export default function OpportunitiesView() {
       {/* Header with Pipeline Selection */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Opportunities</h1>
-          <p className="mt-1 text-sm text-gray-600">
+          <h1 className="text-2xl font-bold text-slate-900">Opportunities</h1>
+          <p className="mt-1 text-sm text-slate-600">
             Track contacts through your sales pipeline
           </p>
         </div>
@@ -81,14 +81,14 @@ export default function OpportunitiesView() {
           {/* Pipeline Selector */}
           {pipelines.length > 0 && (
             <div className="flex items-center space-x-2">
-              <label htmlFor="pipeline" className="text-sm font-medium text-gray-700 whitespace-nowrap">
+              <label htmlFor="pipeline" className="text-sm font-medium text-slate-700 whitespace-nowrap">
                 Pipeline:
               </label>
               <select
                 id="pipeline"
                 value={selectedPipelineId}
                 onChange={(e) => setSelectedPipelineId(e.target.value)}
-                className="block rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+                className="block rounded-md border-slate-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
               >
                 {pipelines.map((pipeline) => (
                   <option key={pipeline.id} value={pipeline.id}>

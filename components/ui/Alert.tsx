@@ -1,4 +1,5 @@
 import React from 'react'
+import { cn } from '@/lib/utils'
 
 interface AlertProps {
   children: React.ReactNode
@@ -9,13 +10,13 @@ interface AlertProps {
 export default function Alert({
   children,
   variant = 'info',
-  className = '',
+  className,
 }: AlertProps) {
   const variantStyles = {
-    success: 'bg-green-50 border-green-200 text-green-800',
-    error: 'bg-red-50 border-red-200 text-red-800',
-    warning: 'bg-yellow-50 border-yellow-200 text-yellow-800',
-    info: 'bg-blue-50 border-blue-200 text-blue-800',
+    success: 'bg-emerald-50 border-emerald-500 text-emerald-800',
+    error: 'bg-red-50 border-red-500 text-red-800',
+    warning: 'bg-amber-50 border-amber-500 text-amber-800',
+    info: 'bg-primary-50 border-primary-500 text-primary-800',
   }
 
   const iconPaths = {
@@ -27,7 +28,11 @@ export default function Alert({
 
   return (
     <div
-      className={`flex items-start p-4 border rounded-lg ${variantStyles[variant]} ${className}`}
+      className={cn(
+        'flex items-start p-4 border-l-4 rounded-r-xl animate-fade-in',
+        variantStyles[variant],
+        className
+      )}
       role="alert"
     >
       <svg

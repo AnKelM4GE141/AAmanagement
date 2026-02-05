@@ -64,38 +64,38 @@ export default function OpportunityCard({
       style={style}
       {...attributes}
       {...listeners}
-      className={`bg-white rounded-lg border border-gray-200 p-4 shadow-sm hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing ${
+      className={`bg-white rounded-lg border border-slate-200 p-4 shadow-sm hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing ${
         isDragging ? 'rotate-3 shadow-lg' : ''
       }`}
     >
       {/* Contact Info */}
       <div className="mb-3">
         <div className="flex items-center space-x-2 mb-1">
-          <div className="h-8 w-8 rounded-full bg-blue-600 flex items-center justify-center text-white text-sm font-medium flex-shrink-0">
+          <div className="h-8 w-8 rounded-full bg-primary-600 flex items-center justify-center text-white text-sm font-medium flex-shrink-0">
             {opportunity.contact_name.charAt(0).toUpperCase()}
           </div>
           <div className="flex-1 min-w-0">
-            <h4 className="text-sm font-medium text-gray-900 truncate">
+            <h4 className="text-sm font-medium text-slate-900 truncate">
               {opportunity.contact_name}
             </h4>
           </div>
         </div>
-        <p className="text-xs text-gray-500 truncate">{opportunity.contact_email}</p>
+        <p className="text-xs text-slate-500 truncate">{opportunity.contact_email}</p>
       </div>
 
       {/* Property */}
       {opportunity.property_address && (
         <div className="mb-2">
-          <p className="text-xs text-gray-600 truncate">
+          <p className="text-xs text-slate-600 truncate">
             📍 {opportunity.property_address}
           </p>
         </div>
       )}
 
       {/* Value & Move-in Date */}
-      <div className="flex items-center justify-between text-xs text-gray-500">
+      <div className="flex items-center justify-between text-xs text-slate-500">
         {opportunity.value && (
-          <span className="font-medium text-gray-900">
+          <span className="font-medium text-slate-900">
             {formatCurrency(opportunity.value)}
           </span>
         )}
@@ -106,7 +106,7 @@ export default function OpportunityCard({
 
       {/* Notes */}
       {opportunity.notes && (
-        <div className="mt-2 text-xs text-gray-600 line-clamp-2">
+        <div className="mt-2 text-xs text-slate-600 line-clamp-2">
           {opportunity.notes}
         </div>
       )}

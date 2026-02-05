@@ -117,7 +117,7 @@ export default function SavedPaymentMethods({
     if (type === 'ach') {
       return (
         <svg
-          className="w-8 h-8 text-blue-600"
+          className="w-8 h-8 text-primary-600"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -153,20 +153,20 @@ export default function SavedPaymentMethods({
     if (pm.type === 'ach') {
       return (
         <div>
-          <div className="font-medium text-gray-900">
+          <div className="font-medium text-slate-900">
             {pm.bank_name || 'Bank Account'}
           </div>
-          <div className="text-sm text-gray-600">····{pm.last4}</div>
+          <div className="text-sm text-slate-600">····{pm.last4}</div>
         </div>
       )
     } else {
       return (
         <div>
-          <div className="font-medium text-gray-900">
+          <div className="font-medium text-slate-900">
             {pm.card_brand ? pm.card_brand.toUpperCase() : 'Card'} ····
             {pm.last4}
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-sm text-slate-600">
             Expires {pm.exp_month}/{pm.exp_year}
           </div>
         </div>
@@ -177,8 +177,8 @@ export default function SavedPaymentMethods({
   if (isLoading) {
     return (
       <div className="text-center py-8">
-        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-gray-300 border-t-blue-600"></div>
-        <p className="mt-2 text-sm text-gray-600">Loading payment methods...</p>
+        <div className="inline-block animate-spin rounded-full h-8 w-8 border-4 border-slate-300 border-t-blue-600"></div>
+        <p className="mt-2 text-sm text-slate-600">Loading payment methods...</p>
       </div>
     )
   }
@@ -205,7 +205,7 @@ export default function SavedPaymentMethods({
           {paymentMethods.length === 0 ? (
             <div className="text-center py-8">
               <svg
-                className="mx-auto h-12 w-12 text-gray-400"
+                className="mx-auto h-12 w-12 text-slate-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -217,8 +217,8 @@ export default function SavedPaymentMethods({
                   d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
                 />
               </svg>
-              <p className="mt-2 text-sm text-gray-600">No saved payment methods</p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="mt-2 text-sm text-slate-600">No saved payment methods</p>
+              <p className="text-xs text-slate-500 mt-1">
                 Click "Add Payment Method" above to get started
               </p>
             </div>
@@ -229,8 +229,8 @@ export default function SavedPaymentMethods({
               key={pm.id}
               className={`flex items-center justify-between p-4 border rounded-lg ${
                 pm.is_default
-                  ? 'border-blue-500 bg-blue-50'
-                  : 'border-gray-200 bg-white'
+                  ? 'border-primary-500 bg-primary-50'
+                  : 'border-slate-200 bg-white'
               }`}
             >
               <div className="flex items-center space-x-4">
@@ -238,7 +238,7 @@ export default function SavedPaymentMethods({
                 <div className="flex-1">
                   {getPaymentMethodLabel(pm)}
                   {pm.is_default && (
-                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 mt-1">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-primary-100 text-primary-800 mt-1">
                       Default
                     </span>
                   )}
@@ -283,11 +283,11 @@ export default function SavedPaymentMethods({
         </div>
       )}
 
-      <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-        <h4 className="text-sm font-medium text-gray-900 mb-2">
+      <div className="mt-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+        <h4 className="text-sm font-medium text-slate-900 mb-2">
           About Saved Payment Methods
         </h4>
-        <ul className="text-xs text-gray-600 space-y-1">
+        <ul className="text-xs text-slate-600 space-y-1">
           <li>• Payment methods are securely stored with Stripe</li>
           <li>• We never see or store your full card or bank account numbers</li>
           <li>• You can use saved methods for future payments</li>
